@@ -1,15 +1,12 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
+-- IMPORTS
 
+-- Default IMPORTS
 import XMonad
 import Data.Monoid
 import System.Exit
+
+-- My IMPORTS
+import XMonad.Util.SpawnOnce
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -17,7 +14,8 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "xterm"
+--myTerminal      = "xterm"			   -- Use xterm as Terminal (Default)
+myTerminal      = "kitty"			   -- Use kitty as Terminal
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -29,14 +27,16 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+--myBorderWidth   = 1				   -- Default Border Width
+myBorderWidth   = 10
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+--myModMask       = mod1Mask		   -- Use ALT key as "modkey" (Default)
+myModMask       = mod4Mask			   -- Use Super key as "modkey"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -243,7 +243,14 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+--
+--myStartupHook = return () 		   								-- Default StartupHook
+myStartupHook = do
+		spawnOnce "nitrogen --restore &" 							-- Launch nitrogen 
+		spawnOnce "picom -f &"			 							-- Launch picom
+		
+-- For Virtual Machines Only. Comment this out if using on bare metal.
+		spawnOnce "xrandr --output Virtual-1 --mode 1920x1080"		-- Setting correct resolution for first monitor.
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
