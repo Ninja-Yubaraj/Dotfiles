@@ -51,8 +51,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#282c34"
+myFocusedBorderColor = "#46d9ff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -243,14 +243,11 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
---
 --myStartupHook = return () 		   								-- Default StartupHook
+
 myStartupHook = do
 		spawnOnce "nitrogen --restore &" 							-- Launch nitrogen 
 		spawnOnce "picom -f &"			 							-- Launch picom
-		
--- For Virtual Machines Only. Comment this out if using on bare metal.
-		spawnOnce "xrandr --output Virtual-1 --mode 1920x1080"		-- Setting correct resolution for first monitor.
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
