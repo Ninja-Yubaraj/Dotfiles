@@ -247,7 +247,7 @@ myLogHook = return ()
 
 myStartupHook = do
 		spawnOnce "nitrogen --restore &" 							-- Launch nitrogen 
-		spawnOnce "picom -f &"			 							-- Launch picom
+		spawnOnce "picom -f &"			 							    -- Launch picom
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
