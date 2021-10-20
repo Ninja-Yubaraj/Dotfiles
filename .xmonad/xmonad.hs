@@ -1,5 +1,4 @@
 -- IMPORTS --
-
 -- Base
 import XMonad
 import System.Exit
@@ -16,7 +15,7 @@ import qualified Data.Map        as M
 -- certain contrib modules.
 --
 --myTerminal      = "xterm"			   -- Use xterm as Terminal (Default)
-myTerminal      = "kitty"			   -- Use kitty as Terminal
+myTerminal      = "kitty"			     -- Use kitty as Terminal
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -28,8 +27,8 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
---myBorderWidth   = 1				   -- Default Border Width
-myBorderWidth   = 10
+--myBorderWidth   = 1				       -- Default Border Width
+myBorderWidth   = 2                -- Set Border Width to 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -248,7 +247,7 @@ myLogHook = return ()
 
 myStartupHook = do
 		spawnOnce "nitrogen --restore &" 							-- Launch nitrogen 
-		spawnOnce "picom -f &"			 							    -- Launch picom
+		spawnOnce "picom &"			 							        -- Launch picom
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
