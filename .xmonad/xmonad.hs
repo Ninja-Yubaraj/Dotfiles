@@ -1,14 +1,15 @@
--- IMPORTS
+-- IMPORTS --
 
--- Default IMPORTS
+-- Base
 import XMonad
-import Data.Monoid
 import System.Exit
+import qualified XMonad.StackSet as W
 
--- My IMPORTS
+-- Utilities
 import XMonad.Util.SpawnOnce
 
-import qualified XMonad.StackSet as W
+-- Data
+import Data.Monoid
 import qualified Data.Map        as M
 
 -- The preferred terminal program, which is used in a binding below and by
