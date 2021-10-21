@@ -69,7 +69,7 @@ fi
 
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+  kitty*|xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
         ;;
   screen*)
@@ -90,6 +90,7 @@ shopt -s checkwinsize # checks term size when bash regains control
 bind "set completion-ignore-case on"
 
 ### ARCHIVE EXTRACTION
+## This function needs several packages, like tar, unzip, p7zip, etc.
 # usage: ex <file>
 ex ()
 {
