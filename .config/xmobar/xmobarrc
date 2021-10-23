@@ -1,3 +1,6 @@
+-- Xmobar (https://xmobar.org/)
+-- Example Config (https://raw.githubusercontent.com/jaor/xmobar/master/examples/xmobar.config)
+
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , additionalFonts = []
        , borderColor = "black"
