@@ -1,19 +1,19 @@
 -- IMPORTS --
 -- Base
-import XMonad
-import System.Exit
-import qualified XMonad.StackSet as W
+import XMonad							 -- Default
+import System.Exit						 -- Default
+import qualified XMonad.StackSet as W	 -- Default
 
 -- Utilities
 import XMonad.Util.SpawnOnce			 -- For spawnOnce
 import XMonad.Util.Run 					 -- For spawnPipe
 
 -- Data
-import Data.Monoid
-import qualified Data.Map        as M
+import Data.Monoid						 -- Default
+import qualified Data.Map        as M	 -- Default
 
 -- Hooks
-import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageDocks			 -- To automatically manage dock type programs like xmobar
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -190,7 +190,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --
 -- myLayout = tiled ||| Mirror tiled ||| Full 						-- Default myLayout
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)			-- To prevent overlapping with docks, notifications, etc.
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -263,13 +263,13 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
--- main = xmonad defaults
-											-- Default Main
+-- main = xmonad defaults										    -- Default Main
+
 main = do 
 
 -- Launching three instances of xmobar on their monitors.
 -- Uncomment xmproc1 and xmproc2 if you have more than single monitor.
-  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 1
+  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 1(Middle/Main)
 --xmproc1 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 2
 --xmproc2 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 3
   
