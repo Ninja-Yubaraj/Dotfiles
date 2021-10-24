@@ -321,6 +321,16 @@ alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!
 # usage: tsh .bashrc
 alias tsh='transfer'                                                                # tsh:          Transfer files to transfer.sh
 
+# ani-cli
+# Get this script from Github: https://github.com/pystardust/ani-cli or AUR
+alias ani='ani-cli'
+alias anid='ani-cli -d'
+alias anih='ani-cli -H'
+alias anib='ani-cli -q "best"'
+alias aniw='ani-cli -q "worst"'
+alias anidb='ani-cli -d -q "best"'
+alias anidw='ani-cli -d -q "worst"'
+
 # switch between shells
 # I do not recommend switching default SHELL from bash.
 #alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"                 # tobash:       Switch to bash
