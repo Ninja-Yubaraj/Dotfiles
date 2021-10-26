@@ -6,7 +6,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   "autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/.config/nvim/autoload/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
@@ -14,5 +14,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'scrooloose/NERDTree'
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
+	" Dracula Theme
+	"Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
