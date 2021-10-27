@@ -7,8 +7,9 @@
 " My init.vim config. I like to put everything in one place.
 
 
-set nocompatible               " be iMproved, required
+set nocompatible               " be iMproved, recommended by vimwiki
 filetype off                   " required
+"filetype plugin on             " recommended by vimwiki
 
 
 "-----------------------------------------------------------------------------------------------------------------------
@@ -18,6 +19,7 @@ filetype off                   " required
 let g:mapleader = "\<Space>"             " set leader key to space
 
 syntax enable                            " Enables syntax highlighing
+"syntax on                                " recommended by vimwiki
 set hidden                               " Required to keep multiple buffers open multiple buffers
 set nowrap                               " Display long lines as just one line
 set encoding=utf-8                       " The encoding displayed
@@ -42,7 +44,7 @@ set number                               " Line numbers
 set cursorline                           " Enable highlighting of the current line
 set background=dark                      " tell vim what the background color looks like
 set showtabline=2                        " Always show tabs
-set noshowmode                           " We don't need to see things like -- INSERT -- anymore
+set noshowmode                           " We don't need to see things like -- INSERT -- anymore, recommended by lightline
 set nobackup                             " This is recommended by coc
 set nowritebackup                        " This is recommended by coc
 set updatetime=300                       " Faster completion
@@ -125,5 +127,8 @@ Plug 'sheerun/vim-polyglot'                " Better Syntax Support
 Plug 'scrooloose/NERDTree'                 " File Explorer
 Plug 'jiangmiao/auto-pairs'                " Auto pairs for '(' '[' '{'
 "Plug 'dracula/vim', { 'as': 'dracula' }    " Dracula Theme
+Plug 'itchyny/lightline.vim'               " Lightline statusline/tabline
+"Plug 'vimwiki/vimwiki'                     " Vimwiki
+Plug ap/vim-css-color                      " Color preview for CSS
 
 call plug#end()
