@@ -107,9 +107,10 @@ cmap w!! w !sudo tee %
 
 
 "-----------------------------------------------------------------------------------------------------------------------
-" Plugins with vim-plug
+" => Plugins and vim-plug
 "-----------------------------------------------------------------------------------------------------------------------
-" auto-install vim-plug
+
+""" Auto-Install Vim-Plug """
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -117,15 +118,12 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   "autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+""" Plugins """
 call plug#begin('~/.config/nvim/plugged')
 
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
-    " File Explorer
-    Plug 'scrooloose/NERDTree'
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
-	" Dracula Theme
-	"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'sheerun/vim-polyglot'               " Better Syntax Support
+Plug 'scrooloose/NERDTree'                " File Explorer
+Plug 'jiangmiao/auto-pairs'               " Auto pairs for '(' '[' '{'
+"Plug 'dracula/vim', { 'as': 'dracula' }   " Dracula Theme
 
 call plug#end()
