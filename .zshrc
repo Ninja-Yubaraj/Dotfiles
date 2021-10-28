@@ -362,3 +362,4 @@ alias wcc='wc -c'                                                               
 # MISC
 #alias nc='ncat'                                                                    # nc:           use nc instead of ncat, for our termux users. Don't worry I am here for you.
 #alias c='clear'                                                                    # c:            clear the terminal.
+#alias vim='nvim'                                                                   # vim:          use nvim instead of vim.
