@@ -78,7 +78,7 @@ fi
 
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+  kitty*|xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
         ;;
   screen*)
@@ -87,6 +87,7 @@ case ${TERM} in
 esac
 
 ### Function extract for common file formats ###
+## This function needs several packages, like tar, unzip, p7zip, etc.
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
@@ -332,6 +333,16 @@ alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!
 # transfer.sh
 # usage: tsh .bashrc
 alias tsh='transfer'                                                                # tsh:          Transfer files to transfer.sh
+
+# ani-cli
+# Get this script from Github: https://github.com/pystardust/ani-cli or AUR
+alias ani='ani-cli'
+alias anid='ani-cli -d'
+alias anih='ani-cli -H'
+alias anib='ani-cli -q "best"'
+alias aniw='ani-cli -q "worst"'
+alias anidb='ani-cli -d -q "best"'
+alias anidw='ani-cli -d -q "worst"'
 
 # switch between shells
 # I do not recommend switching default SHELL from bash.
