@@ -336,13 +336,13 @@ alias tsh='transfer'                                                            
 
 # ani-cli
 # Get this script from Github: https://github.com/pystardust/ani-cli or AUR
-alias ani='ani-cli'
-alias anid='ani-cli -d'
-alias anih='ani-cli -H'
-alias anib='ani-cli -q "best"'
-alias aniw='ani-cli -q "worst"'
-alias anidb='ani-cli -d -q "best"'
-alias anidw='ani-cli -d -q "worst"'
+alias ani='ani-cli'                                                                 # ani:          Ani-cli
+alias anid='ani-cli -d'                                                             # anid:         Download anime
+alias anih='ani-cli -H'                                                             # anih:         Resume watching anime
+alias anib='ani-cli -q "best"'                                                      # anib:         Watch anime with best quality
+alias aniw='ani-cli -q "worst"'                                                     # aniw:         Watch anime with worst quality
+alias anidb='ani-cli -d -q "best"'                                                  # anidb:        Download best quality
+alias anidw='ani-cli -d -q "worst"'                                                 # anidw:        Download worst quality
 
 # switch between shells
 # I do not recommend switching default SHELL from bash.
