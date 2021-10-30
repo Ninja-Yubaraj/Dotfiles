@@ -182,19 +182,19 @@ alias .5='cd ../../../../..'                 # Go back 5 directories
 #alias ux='chmod u+x'                        # ---x------ (user: --x, group: -, other: -)
 
 # Directory Listing aliases
-alias dir='ls -hFx'                          # dir: List directory contents with long format, human readable file sizes, and colorized file types
-alias l.='ls -d .* --color=tty'              # short listing, only hidden files - .*
-alias l='ls -lathF'                          # long, sort by newest to oldest
-alias L='ls -latrhF'                         # long, sort by oldest to newest
-alias la='ls -Al'                            # show hidden files
-alias lc='ls -lcr'                           # sort by change time
-alias lk='ls -lSr'                           # sort by size
-alias lh='ls -lSrh'                          # sort by size human readable
-alias lm='ls -al | more'                     # pipe through 'more'
-alias lo='ls -laSFh'                         # sort by size largest to smallest
-alias lr='ls -lR'                            # recursive ls
-alias lt='ls -ltr'                           # sort by date
-alias lu='ls -lur'                           # sort by access time
+#alias dir='ls -hFx'                         # dir: List directory contents with long format, human readable file sizes, and colorized file types
+#alias l.='ls -d .* --color=tty'             # short listing, only hidden files - .*
+#alias l='ls -lathF'                         # long, sort by newest to oldest
+#alias L='ls -latrhF'                        # long, sort by oldest to newest
+#alias la='ls -Al'                           # show hidden files
+#alias lc='ls -lcr'                          # sort by change time
+#alias lk='ls -lSr'                          # sort by size
+#alias lh='ls -lSrh'                         # sort by size human readable
+#alias lm='ls -al | more'                    # pipe through 'more'
+#alias lo='ls -laSFh'                        # sort by size largest to smallest
+#alias lr='ls -lR'                           # recursive ls
+#alias lt='ls -ltr'                          # sort by date
+#alias lu='ls -lur'                          # sort by access time
 
 # Changing "ls" to "exa"
 #alias ls='exa -al --color=always --group-directories-first' # my preferred listing
