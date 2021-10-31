@@ -349,3 +349,5 @@ alias wcc='wc -c'                                                               
 # MISC
 #alias nc='ncat'                                                                    # nc:           use nc instead of ncat.
 #alias c='clear'                                                                    # c:            clear the terminal.
+#alias vim='nvim'
+
