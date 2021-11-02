@@ -289,7 +289,7 @@ alias publicip='echo "Current Public IP address is:" && curl ifconfig.me && echo
 #alias newtag='git tag -a'                                                          # newtag:       Create a new tag object
 
 # get error messages from journalctl
-alias jctl="journalctl -p 3 -xb"                                                    # jctl:         Show only errors from journalctl
+alias jctl="journalctl -p 3 -xb"                                                    # jctl:         Show errors from journalctl
 
 # gpg encryption
 # verify signature for isos
@@ -350,4 +350,3 @@ alias wcc='wc -c'                                                               
 #alias nc='ncat'                                                                    # nc:           use nc instead of ncat.
 #alias c='clear'                                                                    # c:            clear the terminal.
 #alias vim='nvim'
-
