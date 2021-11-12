@@ -9,26 +9,26 @@
 
 -- IMPORTS --
 -- Base
-import XMonad							 -- Default
-import System.Exit						 -- Default
-import qualified XMonad.StackSet as W	 -- Default
+import XMonad                            -- Default
+import System.Exit                       -- Default
+import qualified XMonad.StackSet as W    -- Default
 
 -- Utilities
-import XMonad.Util.SpawnOnce			 -- For spawnOnce
-import XMonad.Util.Run 					 -- For spawnPipe
+import XMonad.Util.SpawnOnce             -- For spawnOnce
+import XMonad.Util.Run                   -- For spawnPipe
 
 -- Data
-import Data.Monoid						 -- Default
-import qualified Data.Map        as M	 -- Default
+import Data.Monoid                       -- Default
+import qualified Data.Map        as M    -- Default
 
 -- Hooks
-import XMonad.Hooks.ManageDocks			 -- To automatically manage dock type programs like xmobar
+import XMonad.Hooks.ManageDocks          -- To automatically manage dock type programs like xmobar
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
---myTerminal      = "xterm"			     -- Use xterm as Terminal (Default)
-myTerminal      = "kitty"			     -- Use kitty as Terminal
+--myTerminal      = "xterm"              -- Use xterm as Terminal (Default)
+myTerminal      = "kitty"                -- Use kitty as Terminal
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -40,16 +40,16 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
---myBorderWidth   = 1				       -- Default Border Width
-myBorderWidth   = 2               		   -- Set Border Width to 2
+--myBorderWidth   = 1                      -- Default Border Width
+myBorderWidth   = 2                        -- Set Border Width to 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
---myModMask       = mod1Mask		   -- Use ALT key as "modkey" (Default)
-myModMask       = mod4Mask			   -- Use Super key as "modkey"
+--myModMask       = mod1Mask           -- Use ALT key as "modkey" (Default)
+myModMask       = mod4Mask             -- Use Super key as "modkey"
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -64,8 +64,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
---myNormalBorderColor  = "#dddddd" 			-- Default NormalBorderColor
---myFocusedBorderColor = "#ff0000"			-- Default FocusedBorderColor
+--myNormalBorderColor  = "#dddddd"          -- Default NormalBorderColor
+--myFocusedBorderColor = "#ff0000"          -- Default FocusedBorderColor
 
 myNormalBorderColor  = "#282c34"
 myFocusedBorderColor = "#46d9ff"
@@ -197,9 +197,9 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
--- myLayout = tiled ||| Mirror tiled ||| Full 						-- Default myLayout
+-- myLayout = tiled ||| Mirror tiled ||| Full                       -- Default myLayout
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)			-- To prevent overlapping with docks, notifications, etc.
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)            -- To prevent overlapping with docks, notifications, etc.
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -261,26 +261,26 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
---myStartupHook = return () 		   								-- Default StartupHook
+--myStartupHook = return ()                                         -- Default StartupHook
 
 myStartupHook = do
-		spawnOnce "nitrogen --restore &" 							-- Launch nitrogen 
-		spawnOnce "picom &"			 							    -- Launch picom
+        spawnOnce "nitrogen --restore &"                            -- Launch nitrogen 
+        spawnOnce "picom &"                                         -- Launch picom
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
--- main = xmonad defaults										    -- Default Main
+-- main = xmonad defaults                                           -- Default Main
 
 main = do 
 
 -- Launching three instances of xmobar on their monitors.
 -- Uncomment xmproc1 and xmproc2 if you have more than single monitor.
-  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 1(Middle/Main)
---xmproc1 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 2
---xmproc2 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"		-- Monitor 3
+  xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"      -- Monitor 1(Middle/Main)
+--xmproc1 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"      -- Monitor 2
+--xmproc2 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc"      -- Monitor 3
   
   xmonad $ docks defaults
 
