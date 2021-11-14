@@ -344,6 +344,12 @@ alias aniw='ani-cli -q "worst"'                                                 
 alias anidb='ani-cli -d -q "best"'                                                  # anidb:        Download best quality
 alias anidw='ani-cli -d -q "worst"'                                                 # anidw:        Download worst quality
 
+# wttr.in
+# The right way to check the weather
+# usage: curl wttr.in -- will get the weather of you timezone location
+#        curl wttr.in/timezone -- will get the weather of the specified timezone location
+alias wrn='curl wttr.in'                                                            # wrn:          Weather report
+
 # switch between shells
 # I do not recommend switching default SHELL from bash.
 #alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"                 # tobash:       Switch to bash
