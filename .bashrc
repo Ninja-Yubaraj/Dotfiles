@@ -143,10 +143,10 @@ transfer() {
 }
 
 # Neofetch
-#clear; neofetch   # clear screen and show neofetch
-#echo					     # If you need some space, I understand, its ok :)
-#neofetch				   # Standard Neofetch 
-#neofetch -L			 # Neofetch Distro Logo
+#clear; neofetch                             # clear screen and show neofetch
+#echo                                        # If you need some space, I understand, its ok :)
+#neofetch                                    # Standard Neofetch 
+#neofetch -L                                 # Neofetch Distro Logo
 
 ### RANDOM COLOR SCRIPT ###
 # Get this script from DT's GitLab: gitlab.com/dwt1/shell-color-scripts
@@ -197,11 +197,11 @@ alias .5='cd ../../../../..'                 # Go back 5 directories
 #alias lu='ls -lur'                          # sort by access time
 
 # Changing "ls" to "exa"
-#alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-#alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-#alias ll='exa -l --color=always --group-directories-first'  # long format
-#alias lt='exa -aT --color=always --group-directories-first' # tree listing
-#alias l.='exa -a | egrep "^\."'                             # hidden files
+#alias ls='exa -al --color=always --group-directories-first'                                                 # my preferred listing
+#alias la='exa -a --color=always --group-directories-first'                                                  # all files and dirs
+#alias ll='exa -l --color=always --group-directories-first'                                                  # long format
+#alias lt='exa -aT --color=always --group-directories-first'                                                 # tree listing
+#alias l.='exa -a | egrep "^\."'                                                                             # hidden files
 
 # pacman and yay
 #alias pacsyu='sudo pacman -Syyu'                 # update only standard pkgs
