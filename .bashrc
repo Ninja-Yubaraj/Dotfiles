@@ -332,10 +332,9 @@ alias anidb='ani-cli -d -q "best"'                                              
 alias anidw='ani-cli -d -q "worst"'                                                 # anidw:        Download worst quality
 
 # wttr.in
-# The right way to check the weather
-# usage: curl wttr.in -- will get the weather of you timezone location
-#        curl wttr.in/timezone -- will get the weather of the specified timezone location
-alias wrn='curl wttr.in'                                                            # wrn:          Weather report
+# Github: https://github.com/chubin/wttr.in
+alias wttr='curl wttr.in'                                                           # wttr:         Get weather from wttr.in
+alias wttr-moon='curl wttr.in/moon'                                                 # wttr-moon:    Get Moon phase from wttr.in
 
 # switch between shells
 # I do not recommend switching default SHELL from bash.
