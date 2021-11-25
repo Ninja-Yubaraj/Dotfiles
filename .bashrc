@@ -247,13 +247,13 @@ alias rm='rm -i'                                  # confirm before deleting
 # shred (uncomment only one of them)
 #alias shred='shred -u -n 3'                      # securely erase files
 #alias shred='shred -uzn3'                        # Elliot's favorite (Mr.Robot)
-#alias shred='shred -uzvn3'                       # Ninja's favorite
+alias shred='shred -uzvn3'                        # Ninja's favorite
 #alias shred='shred -uzvn10'                      # uncomment this if you're on FBI's watchlist
 #alias shred='shred -uzvn20'                      # just whyyy?????
 #alias shred='shred -uzvn50'                      # plz stop!!!
 #alias shred='shred -uzvn100'                     # there a special place in hell for you my friend
 
-# adding flags
+# adding flags to make it more readable
 alias df='df -h'                                  # human-readable sizes
 alias free='free -m'                              # show sizes in MB
 
