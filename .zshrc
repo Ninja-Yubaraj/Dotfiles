@@ -266,10 +266,6 @@ alias shred='shred -uzvn3'                        # Ninja's favorite
 #alias shred='shred -uzvn50'                      # plz stop!!!
 #alias shred='shred -uzvn100'                     # there a special place in hell for you my friend
 
-# adding flags to make it more readable
-alias df='df -h'                                  # human-readable sizes
-alias free='free -m'                              # show sizes in MB
-
 # get top process eating cpu and memory
 alias psa="ps auxf"                                        # show all processes
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"   # show all processes eating memory
@@ -380,3 +376,5 @@ alias wcc='wc -c'                                                               
 #alias nc='ncat'                                                                    # nc:           use nc instead of ncat, for our termux users. Don't worry I am here for you.
 #alias c='clear'                                                                    # c:            clear the terminal.
 #alias vim='nvim'
+alias df='df -h'                                                                    # human-readable sizes
+alias free='free -m'                                                                # show sizes in MB
