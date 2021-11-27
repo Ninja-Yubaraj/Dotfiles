@@ -322,8 +322,12 @@ alias xpaste="xclip -selection clipboard -o"                                    
 
 # termbin.com
 # usage: cat .bashrc | tbin 
-alias tbin="nc termbin.com 9999"                                                    # tbin:         Pipe to termbin.com
-alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!"'  # tbinc:        Pipe to termbin.com and copy to clipboard
+alias tbin="nc termbin.com 9999"                                                                              # tbin:         Pipe to termbin.com and show the link
+alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!"'                            # tbinc:        Pipe to termbin.com and copy the link to xclipboard
+alias tbinp='curl $(xpaste)'                                                                                  # tbinp:        Paste from xclipboard and show the contents
+alias tbinpl='curl $(xpaste) | less'                                                                          # tbinpl:       Paste from xclipboard and show the contents in less (glitchy)
+alias tbinpb='curl $(xpaste) | bat'                                                                           # tbinpb:       Paste from xclipboard and show the contents in bat (recommended)
+alias tbind='mkdir ~/termbin/; cd ~/termbin/; wget $(xpaste); cd -; echo "File downloaded to ~/termbin/"'       # tbind:        Paste from xclipboard and download the file to ~/termbin/
 
 # transfer.sh
 # usage: tsh .bashrc
