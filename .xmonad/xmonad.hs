@@ -27,7 +27,9 @@ import XMonad.Hooks.ManageDocks          -- To automatically manage dock type pr
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
+-- Uncomment any one of the following lines to use a different terminal:
 --myTerminal      = "xterm"              -- Use xterm as Terminal (Default)
+--myTerminal      = "alacritty"          -- Use alacritty as Terminal
 myTerminal      = "kitty"                -- Use kitty as Terminal
 
 -- Whether focus follows the mouse pointer.
@@ -261,11 +263,19 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
---myStartupHook = return ()                                         -- Default StartupHook
+--myStartupHook = return ()                                                         -- Default StartupHook
 
 myStartupHook = do
-        spawnOnce "nitrogen --restore &"                            -- Launch nitrogen 
-        spawnOnce "picom &"                                         -- Launch picom
+        --spawnOnce "lxsessions &"                                                  -- Launch lxsessions
+        spawnOnce "picom &"                                                         -- Launch picom (compositor)
+        --spawnOnce "compton &"                                                     -- Launch compton (compositor)
+        --spawnOnce "nm-applet &"                                                   -- Launch network manager
+        --spawnOnce "volumeicon &"                                                  -- Launch volumeicon
+        --spawnOnce "conky -c $HOME/.config/conky/xmonad/conky.conf"                -- Launch conky
+        spawnOnce "nitrogen --restore &"                                            -- Launch nitrogen
+        --spawnOnce "xscreensaver -no-splash &"                                     -- Launch xscreensaver
+        --spawnOnce "~/.fehbg &"                                                    -- set last saved feh wallpaper
+        --spawnOnce "feh --randomize --bg-fill $HOME/Pictures/Wallpapers &"         -- set random wallpaper
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -315,10 +325,10 @@ defaults = def {
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
+help = unlines ["The default modifier key is 'superkey'. Default keybindings:",
     "",
     "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
+    "mod-Shift-Enter  Launch terminal",
     "mod-p            Launch dmenu",
     "mod-Shift-p      Launch gmrun",
     "mod-Shift-c      Close/kill the focused window",
