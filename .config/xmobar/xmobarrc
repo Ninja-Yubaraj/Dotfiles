@@ -7,8 +7,10 @@
 -- My xmobarrc file. Some may call it xmobar.config file.
 -- Example Config: https://raw.githubusercontent.com/jaor/xmobar/master/examples/xmobar.config
 
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , additionalFonts = []
+Config { font = "xft:Mononoki Nerd Font:size=12:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki Nerd Font:size=12:antialias=true:hinting=true:bold:style=Bold"
+                           , "xft:Code New Roman:size=12:antialias=true:hinting=true"
+                           ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
