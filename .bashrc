@@ -7,15 +7,15 @@
 # My bash config. The best and the most detailed bash config ever.
 
 ### EXPORT
-export TERM="xterm-256color"                      # getting proper colors
-export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
-#export EDITOR="vim"                              # use default editor as vim
-#export EDITOR="emacs"                            # use default editor as emacs
-#export EDITOR="nvim"                             # use default editor as nvim
-#export EDITOR="nano"                             # use default editor as nano 
-#export EDITOR=""                                 # use anything you want
-#export VISUAL=""                                 # use anything you want
-#export ALTERNATE_EDITOR=""                       # if you want to use an alternate editor
+export TERM="xterm-256color"                 # getting proper colors
+export HISTCONTROL=ignoredups:erasedups      # no duplicate entries
+#export EDITOR="vim"                         # use default editor as vim
+#export EDITOR="emacs"                       # use default editor as emacs
+#export EDITOR="nvim"                        # use default editor as nvim
+#export EDITOR="nano"                        # use default editor as nano 
+#export EDITOR=""                            # use anything you want
+#export VISUAL=""                            # use anything you want
+#export ALTERNATE_EDITOR=""                  # if you want to use an alternate editor
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -78,13 +78,13 @@ case ${TERM} in
 esac
 
 ### SHOPT
-shopt -s autocd # change to named directory
-shopt -s cdspell # autocorrects cd misspellings
-shopt -s cmdhist # save multi-line commands in history as single line
-shopt -s dotglob # dotfiles in path
-shopt -s histappend # do not overwrite history
-shopt -s expand_aliases # expand aliases
-shopt -s checkwinsize # checks term size when bash regains control
+shopt -s autocd                              # change to named directory
+shopt -s cdspell                             # autocorrects cd misspellings
+shopt -s cmdhist                             # save multi-line commands in history as single line
+shopt -s dotglob                             # dotfiles in path
+shopt -s histappend                          # do not overwrite history
+shopt -s expand_aliases                      # expand aliases
+shopt -s checkwinsize                        # checks term size when bash regains control
 
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
@@ -327,7 +327,7 @@ alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!
 alias tbinp='curl $(xpaste)'                                                                                  # tbinp:        Paste from xclipboard and show the contents
 alias tbinpl='curl $(xpaste) | less'                                                                          # tbinpl:       Paste from xclipboard and show the contents in less (glitchy)
 alias tbinpb='curl $(xpaste) | bat'                                                                           # tbinpb:       Paste from xclipboard and show the contents in bat (recommended)
-alias tbind='mkdir ~/termbin/; cd ~/termbin/; wget $(xpaste); cd -; echo "File downloaded to ~/termbin/"'       # tbind:        Paste from xclipboard and download the file to ~/termbin/
+alias tbind='mkdir ~/termbin/; cd ~/termbin/; wget $(xpaste); cd -; echo "File downloaded to ~/termbin/"'     # tbind:        Paste from xclipboard and download the file to ~/termbin/
 
 # transfer.sh
 # usage: tsh .bashrc
