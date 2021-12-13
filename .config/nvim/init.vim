@@ -15,6 +15,7 @@ filetype off                   " required
 "-----------------------------------------------------------------------------------------------------------------------
 " => General Settings
 "-----------------------------------------------------------------------------------------------------------------------
+
 " set leader key
 let g:mapleader = "\<Space>"             " set leader key to space
 
@@ -62,6 +63,7 @@ cmap w!! w !sudo tee %                   " sudo tee
 "-----------------------------------------------------------------------------------------------------------------------
 " => Remapping Keys
 "-----------------------------------------------------------------------------------------------------------------------
+
 " Better nav for omnicomplete
 "inoremap <expr> <c-j> ("\<C-n>")
 "inoremap <expr> <c-k> ("\<C-p>")
@@ -150,6 +152,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/vim-emoji'                                       " Vim needs emojis!
 
 "{{ Themes }}
+    "Plug 'dylanaraps/wal.vim'                                      " Pywal for automated color schemes
     "Plug 'dracula/vim', { 'as': 'dracula' }                        " Dracula Theme
 
 call plug#end()
