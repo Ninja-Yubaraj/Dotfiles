@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+# Dependencies: colorpicker, xclip
+colorpicker --short --one-shot --preview | xclip -selection clipboard
