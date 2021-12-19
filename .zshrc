@@ -309,6 +309,9 @@ alias publicip='echo "Current Public IP address is:" && curl ifconfig.me && echo
 #alias tag='git tag'                                                                # tag:          Create a tag object signed by you
 #alias newtag='git tag -a'                                                          # newtag:       Create a new tag object
 
+# bare git repo alias for dotfiles
+#alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"             # config:       Configure git for dotfiles
+
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"                                                    # jctl:         Show errors from journalctl
 
@@ -382,3 +385,5 @@ alias wcc='wc -c'                                                               
 #alias vim='nvim'
 alias df='df -h'                                                                    # human-readable sizes
 alias free='free -m'                                                                # show sizes in MB
+#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                   # ncmpcpp:      ncmpcpp
+#alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'       # mocp:         mocp
