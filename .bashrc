@@ -348,8 +348,12 @@ alias anidw='ani-cli -d -q "worst"'                                             
 
 # wttr.in
 # Github: https://github.com/chubin/wttr.in
-alias wttr='curl wttr.in'                                                           # wttr:         Get weather from wttr.in
-alias wttr-moon='curl wttr.in/moon'                                                 # wttr-moon:    Get Moon phase from wttr.in
+alias weather='curl wttr.in'                                                        # weather:      Get weather from wttr.in
+alias moon-phase='curl wttr.in/moon'                                                # moon-phase:   Get moon phase from wttr.in
+
+# cointop.sh
+#github: https://github.com/cointop-sh/cointop
+#alias cointop='ssh cointop.sh'                                                     # cointop:      cointop.sh
 
 # switch between shells
 # I do not recommend switching default SHELL from bash.
