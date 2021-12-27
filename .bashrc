@@ -352,7 +352,7 @@ alias weather='curl wttr.in'                                                    
 alias moon-phase='curl wttr.in/moon'                                                # moon-phase:   Get moon phase from wttr.in
 
 # cointop.sh
-#github: https://github.com/cointop-sh/cointop
+# Github: https://github.com/cointop-sh/cointop
 #alias cointop='ssh cointop.sh'                                                     # cointop:      cointop.sh
 
 # switch between shells
