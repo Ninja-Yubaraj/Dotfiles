@@ -308,6 +308,16 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
 
+# Play audio files in current dir by type
+#alias playwav='deadbeef *.wav'                                                     # playwav:      Play wav files
+#alias playogg='deadbeef *.ogg'                                                     # playogg:      Play ogg files
+#alias playmp3='deadbeef *.mp3'                                                     # playmp3:      Play mp3 files
+
+# Play video files in current dir by type
+#alias playavi='vlc *.avi'                                                          # playavi:      Play avi files
+#alias playmov='vlc *.avi'                                                          # playmov:      Play avi files
+#alias playmp4='vlc *.mp4'                                                          # playmp4:      Play mp4 files
+
 # youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "                      # yta-aac:      Download audio in aac format
 alias yta-best="youtube-dl --extract-audio --audio-format best "                    # yta-best:     Download audio in best format
