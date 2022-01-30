@@ -308,6 +308,9 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
 
+# Play lofi [local files only]
+#alias lofi="mpv --no-video --audio-file=$USER/Music/lofi/*.mp3"
+
 # Play audio files in current dir by type
 #alias playwav='deadbeef *.wav'                                                     # playwav:      Play wav files
 #alias playogg='deadbeef *.ogg'                                                     # playogg:      Play ogg files
