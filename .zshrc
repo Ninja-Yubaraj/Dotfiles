@@ -322,7 +322,8 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
 
 # Play lofi [local files only]
-#alias lofi="mpv --no-video --audio-file=$USER/Music/lofi/*.mp3"
+#alias lofi.play="mpv --no-video --shuffle --loop --audio-file=$USER/Music/lofi/*"  # lofi.play:     Play lofi
+#alias lofi.stop="killall mpv"                                                      # lofi.stop:     Stop lofi [This will also kill all mpv processes]
 
 # Play audio files in current dir by type
 #alias playwav='deadbeef *.wav'                                                     # playwav:      Play wav files
