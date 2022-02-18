@@ -321,9 +321,13 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
 
-# Play lofi [local files only]
-#alias lofi.play="mpv --no-video --shuffle --loop --audio-file=$USER/Music/lofi/*"  # lofi.play:     Play lofi
-#alias lofi.stop="killall mpv"                                                      # lofi.stop:     Stop lofi [This will also kill all mpv processes]
+# Play Lofi [local files only]
+#alias lofi.play='mpv --no-video --shuffle --loop-playlist ~/Music/Lofi/*'          # lofi.play:    Play Lofi
+#alias lofi.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'            # lofi.stop:    Stop Lofi
+
+# Play Nightcore [local files only]
+#alias nightcore.play='mpv --no-video --shuffle --loop-playlist ~/Music/Nightcore/*' # nightcore.play: Play Nightcore
+#alias nightcore.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'        # nightcore.stop: Stop Nightcore
 
 # Play audio files in current dir by type
 #alias playwav='deadbeef *.wav'                                                     # playwav:      Play wav files
