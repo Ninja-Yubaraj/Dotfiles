@@ -322,22 +322,25 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"           
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
 
 # Play Lofi [local files only]
-#alias lofi.play='mpv --no-video --shuffle --loop-playlist ~/Music/Lofi/* &'          # lofi.play:    Play Lofi
-#alias lofi.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'              # lofi.stop:    Stop Lofi
+#alias lofi.play='mpv --no-video --shuffle --loop-playlist ~/Music/Lofi/* &'           # lofi.play:    Play Lofi
+#alias lofi.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'               # lofi.stop:    Stop Lofi
 
 # Play Nightcore [local files only]
 #alias nightcore.play='mpv --no-video --shuffle --loop-playlist ~/Music/Nightcore/* &' # nightcore.play: Play Nightcore
 #alias nightcore.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'          # nightcore.stop: Stop Nightcore
 
+# Play Lofi Radio [online]
+#alias lofiradio.lofigirl='mpv --no-video "https://lofi.fm/" &'                     # lofiradio.lofigirl: Play Lofi Radio [LofiGirl]
+
 # Play audio files in current dir by type
-#alias playwav='deadbeef *.wav'                                                     # playwav:      Play wav files
-#alias playogg='deadbeef *.ogg'                                                     # playogg:      Play ogg files
-#alias playmp3='deadbeef *.mp3'                                                     # playmp3:      Play mp3 files
+#alias playwav='mpv --no-video *.wav'                                               # playwav:      Play wav files
+#alias playogg='mpv --no-video *.ogg'                                               # playogg:      Play ogg files
+#alias playmp3='mpv --no-video *.mp3'                                               # playmp3:      Play mp3 files
 
 # Play video files in current dir by type
-#alias playavi='vlc *.avi'                                                          # playavi:      Play avi files
-#alias playmov='vlc *.avi'                                                          # playmov:      Play avi files
-#alias playmp4='vlc *.mp4'                                                          # playmp4:      Play mp4 files
+#alias playavi='mpv *.avi'                                                          # playavi:      Play avi files
+#alias playmov='mpv *.avi'                                                          # playmov:      Play avi files
+#alias playmp4='mpv *.mp4'                                                          # playmp4:      Play mp4 files
 
 # youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "                      # yta-aac:      Download audio in aac format
