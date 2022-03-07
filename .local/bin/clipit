@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "$(date)" >> /tmp/clipboard.txt
+echo "$(xclip -o -sel c)" >> /tmp/clipboard.txt
+echo "" >> /tmp/clipboard.txt

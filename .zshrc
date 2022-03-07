@@ -330,7 +330,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  
 #alias nightcore.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'          # nightcore.stop: Stop Nightcore
 
 # Play Lofi Radio [online]
-#alias lofiradio.lofigirl='mpv --no-video "https://lofi.fm/" &'                     # lofiradio.lofigirl: Play Lofi Radio [LofiGirl]
+#alias lofiradio.lofigirl='mpv --no-video "https://www.youtube.com/watch?v=5qap5aO4i9A" &'  # lofiradio.lofigirl: Play Lofi [Lofi Girl]
 
 # Play audio files in current dir by type
 #alias playwav='mpv --no-video *.wav'                                               # playwav:      Play wav files
