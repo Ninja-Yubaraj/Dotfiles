@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mkdir -p ~/Documents
+cat /tmp/clipboard.txt >> ~/Documents/savedclips.txt
