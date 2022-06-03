@@ -195,6 +195,7 @@ alias .5='cd ../../../../..'                 # Go back 5 directories
 #alias lr='ls -lR'                           # recursive ls
 #alias lt='ls -ltr'                          # sort by date
 #alias lu='ls -lur'                          # sort by access time
+#alias lf='ranger'                           # Use ranger instead of lf (file manager)
 
 # Changing "ls" to "exa"
 #alias ls='exa -al --color=always --group-directories-first'                                                 # my preferred listing
