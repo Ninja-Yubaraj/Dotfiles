@@ -4,9 +4,8 @@
 # NOTE: You have to run this script as root everytime you change something in the scripts!
 
 mkdir -p /etc/pacman.d/hooks
-rm /etc/pacman.d/hooks/recompile-xmonad.hook
-rm /etc/pacman.d/hooks/recompile-xmonadh.hook
-echo "If running this script first time, ignore the error message about missing file"
+rm /etc/pacman.d/hooks/recompile-xmonad.hook && echo "ignore this error message if running first time"
+rm /etc/pacman.d/hooks/recompile-xmonadh.hook && echo "ignore this error message if running first time"
 
 #ln -s ~/.xmonad/pacman-hooks/recompile-xmonad.hook /etc/pacman.d/hooks/recompile-xmonad.hook
 #ln -s ~/.xmonad/pacman-hooks/recompile-xmonadh.hook /etc/pacman.d/hooks/recompile-xmonadh.hook
