@@ -151,8 +151,17 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/limelight.vim'                                   " Hyperfocus on a range
     Plug 'junegunn/vim-emoji'                                       " Vim needs emojis!
 
-"{{ Themes }}
+"{{ Color Schemes }}
     "Plug 'dylanaraps/wal.vim'                                      " Pywal for automated color schemes
     "Plug 'dracula/vim', { 'as': 'dracula' }                        " Dracula Theme
 
 call plug#end()
+
+
+"-----------------------------------------------------------------------------------------------------------------------
+" => Color Schemes
+"-----------------------------------------------------------------------------------------------------------------------
+
+" Uncomment only any one of these!
+"colorscheme wal
+"colorscheme dracula

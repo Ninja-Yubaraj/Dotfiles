@@ -159,6 +159,26 @@ transfer() {
 #    . /etc/bash.command-not-found
 #fi
 
+# pywal
+# Installation: https://github.com/dylanaraps/pywal/wiki/Installation
+# Uncomment the following lines only after you installed pywal.
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+# Not supported in the "fish" shell.
+#(cat ~/.cache/wal/sequences &)
+
+# Alternative (blocks terminal for 0-3ms)
+#cat ~/.cache/wal/sequences
+
+# To add support for TTYs this line can be optionally added.
+#source ~/.cache/wal/colors-tty.sh
+
+# Uncomment this line if you want to access the colors as shell variables.
+#. "~/.cache/wal/colors.sh"
+
+
 ### ALIASES ###
 
 # root privileges
