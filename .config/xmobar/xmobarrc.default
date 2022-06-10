@@ -1,6 +1,3 @@
--- Default xmobarrc file. Some may call it xmobar.config file.
--- Example Config: https://raw.githubusercontent.com/jaor/xmobar/master/examples/xmobar.config
-
 Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , additionalFonts = []
        , borderColor = "black"
@@ -18,6 +15,7 @@ Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
+       , textOutputFormat = Ansi
        , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
                                           "-L","18","-H","25",
                                           "--normal","green",
