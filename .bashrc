@@ -176,7 +176,8 @@ transfer() {
 #source ~/.cache/wal/colors-tty.sh
 
 # Uncomment this line if you want to access the colors as shell variables.
-#. "~/.cache/wal/colors.sh"
+#. "~/.cache/wal/colors.sh"                  # may bug sometimes
+#. "$HOME/.cache/wal/colors.sh"              # then use this instead
 
 
 ### ALIASES ###
@@ -388,6 +389,10 @@ alias anib='ani-cli -q "best"'                                                  
 alias aniw='ani-cli -q "worst"'                                                     # aniw:         Watch anime with worst quality
 alias anidb='ani-cli -d -q "best"'                                                  # anidb:        Download best quality
 alias anidw='ani-cli -d -q "worst"'                                                 # anidw:        Download worst quality
+
+# pywal
+# Get this script from Github: https://github.com/dylanaraps/pywal
+#alias wal='wal -q -i'                                                              # pywal:        Change the color of the terminal
 
 # wttr.in
 # Github: https://github.com/chubin/wttr.in

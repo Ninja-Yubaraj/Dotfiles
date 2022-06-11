@@ -403,6 +403,7 @@ myKeys =
 
     -- KB_GROUP Run Prompt
         , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
+    --    , ("M-S-<Return>", spawn "dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15" -i -p \"Run: \"") -- Dmenu with pywal colors
 
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
