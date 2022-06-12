@@ -259,9 +259,9 @@ alias egrep='egrep --color=auto'                  # show differences in color
 alias fgrep='fgrep --color=auto'                  # show differences in color
 
 # confirm before overwriting something
-alias cp="cp -i"                                  # confirm before overwriting
-alias mv='mv -i'                                  # confirm before overwriting
-alias rm='rm -i'                                  # confirm before deleting
+alias cp="cp -iv"                                  # confirm before overwriting
+alias mv='mv -iv'                                  # confirm before overwriting
+alias rm='rm -iv'                                  # confirm before deleting
 
 # trash things instead of deleting them
 #alias rmtrash='rm -rf ~/.local/share/Trash/*'    # remove all files in trash

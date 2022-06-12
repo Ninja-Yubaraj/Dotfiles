@@ -106,7 +106,8 @@ myTerminal = "kitty"                       -- Sets default terminal to kitty
 --myTerminal = "alacritty"                 -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "firefox "                     -- Sets firefox as browser
+myBrowser = "brave "                       -- Sets brave as browser
+--myBrowser = "firefox "                   -- Sets firefox as browser
 --myBrowser = "qutebrowser "               -- Sets qutebrowser as browser
 
 --myEmacs :: String
@@ -133,24 +134,24 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-    spawn "killall conky"   -- kill current conky on each restart
-    spawn "killall trayer"  -- kill current trayer on each restart
+    spawn "killall conky"                                                                              -- kill current conky on each restart
+    spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
-    spawnOnce "lxsession"
-    spawnOnce "picom"
-    spawnOnce "nm-applet"
-    spawnOnce "volumeicon"
-    --spawnOnce "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+    spawnOnce "lxsession"                                                                              -- start lxsession
+    spawnOnce "picom"                                                                                  -- start picom
+    spawnOnce "nm-applet"                                                                              -- start network manager applet
+    spawnOnce "volumeicon"                                                                             -- start volumeicon
+    --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
 
-    --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
+    --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")        -- start conky
     --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
 
-    --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
-    --spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-    --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"  -- feh set random wallpaper
-    spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
-    --spawnOnce "wal -R &"               -- set wal colorscheme
-    setWMName "LG3D"
+    --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
+    --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
+    --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"                                             -- feh set random wallpaper
+    spawnOnce "nitrogen --restore &"                                                                   -- if you prefer nitrogen to feh
+    --spawnOnce "wal -R"                                                                               -- set wal colorscheme
+    setWMName "LG3D"                                                                                   -- set window manager to LG3D
 
   -- Gridselect --
 
@@ -326,8 +327,8 @@ myTabTheme = def { fontName            = myFont
 -- Theme for showWName which prints current workspace when you change workspaces.
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-    { swn_font              = "xft:Mononoki Nerd Font:bold:size=60"
-    --{ swn_font              = "xft:Ubuntu:bold:size=60"
+    --{ swn_font              = "xft:Mononoki Nerd Font:bold:size=60"
+    { swn_font              = "xft:Ubuntu Nerd Font Complete:bold:size=60"
     , swn_fade              = 1.0
     , swn_bgcolor           = "#1c1f24"
     , swn_color             = "#ffffff"
@@ -546,7 +547,9 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     -- Uncomment xmproc1 and xmproc2 if you have more than a single monitor.
-    xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+    xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
+    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc_pywal")
+    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
     --xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
     --xmproc2 <- spawnPipe ("xmobar -x 2 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
     -- the xmonad, ya know...what the WM is named after!
