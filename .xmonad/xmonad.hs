@@ -88,6 +88,7 @@ import XMonad.Util.SpawnOnce
       -- SolarizedDark
       -- SolarizedLight
       -- TomorrowNight
+      -- Pywal
 import Colors.Dracula
 
   -- Variables --
