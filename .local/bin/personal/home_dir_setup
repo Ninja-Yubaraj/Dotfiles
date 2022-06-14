@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Base-directories
+mkdir -p $HOME/Desktop
 mkdir -p $HOME/Documents
 mkdir -p $HOME/Downloads
 mkdir -p $HOME/Music
@@ -12,8 +13,8 @@ mkdir -p $HOME/tmp
 # Documents Sub-directories
 mkdir -p $HOME/Documents/Notes
 mkdir -p $HOME/Documents/Projects
+mkdir -p $HOME/Documents/Projects/Git
 mkdir -p $HOME/Documents/Library
-mkdir -p $HOME/Documents/Git
 
 # Music Sub-directories
 mkdir -p $HOME/Music/Lofi

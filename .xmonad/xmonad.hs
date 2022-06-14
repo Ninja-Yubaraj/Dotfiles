@@ -138,15 +138,13 @@ myStartupHook = do
     spawn "killall conky"                                                                              -- kill current conky on each restart
     spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
-    spawnOnce "lxsession"                                                                              -- start lxsession
+    --spawnOnce "lxsession"                                                                            -- start lxsession
     spawnOnce "picom"                                                                                  -- start picom
-    spawnOnce "nm-applet"                                                                              -- start network manager applet
-    spawnOnce "volumeicon"                                                                             -- start volumeicon
+    --spawnOnce "nm-applet"                                                                            -- start network manager applet
+    --spawnOnce "volumeicon"                                                                           -- start volumeicon
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
-
     --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")        -- start conky
     --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
-
     --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
     --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
     --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"                                             -- feh set random wallpaper
@@ -401,31 +399,31 @@ myKeys =
 
     -- KB_GROUP Get Help
         , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh") -- Get list of keybindings
-        , ("M-/", spawn "dtos-help")                  -- DTOS help/tutorial videos
+        --, ("M-/", spawn "dtos-help")                  -- DTOS help/tutorial videos
 
     -- KB_GROUP Run Prompt
         , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
-    --    , ("M-S-<Return>", spawn "dmenu_pywal_run") -- Dmenu with pywal colors
+        --, ("M-S-<Return>", spawn "dmenu_pywal_run") -- Dmenu with pywal colors
 
     -- KB_GROUP Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
     -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        , ("M-p h", spawn "dm-hub")           -- allows access to all dmscripts
-        , ("M-p a", spawn "dm-sounds")        -- choose an ambient background
-        , ("M-p b", spawn "dm-setbg")         -- set a background
-        , ("M-p c", spawn "dtos-colorscheme") -- choose a colorscheme
-        , ("M-p C", spawn "dm-colpick")       -- pick color from our scheme
-        , ("M-p e", spawn "dm-confedit")      -- edit config files
-        , ("M-p i", spawn "dm-maim")          -- screenshots (images)
-        , ("M-p k", spawn "dm-kill")          -- kill processes
-        , ("M-p m", spawn "dm-man")           -- manpages
-        , ("M-p n", spawn "dm-note")          -- store one-line notes and copy them
-        , ("M-p o", spawn "dm-bookman")       -- qutebrowser bookmarks/history
-        , ("M-p p", spawn "passmenu")         -- passmenu
-        , ("M-p q", spawn "dm-logout")        -- logout menu
-        , ("M-p r", spawn "dm-reddit")        -- reddio (a reddit viewer)
-        , ("M-p s", spawn "dm-websearch")     -- search various search engines
-        , ("M-p t", spawn "dm-translate")     -- translate text (Google Translate)
+        --, ("M-p h", spawn "dm-hub")           -- allows access to all dmscripts
+        --, ("M-p a", spawn "dm-sounds")        -- choose an ambient background
+        --, ("M-p b", spawn "dm-setbg")         -- set a background
+        --, ("M-p c", spawn "dtos-colorscheme") -- choose a colorscheme
+        --, ("M-p C", spawn "dm-colpick")       -- pick color from our scheme
+        --, ("M-p e", spawn "dm-confedit")      -- edit config files
+        --, ("M-p i", spawn "dm-maim")          -- screenshots (images)
+        --, ("M-p k", spawn "dm-kill")          -- kill processes
+        --, ("M-p m", spawn "dm-man")           -- manpages
+        --, ("M-p n", spawn "dm-note")          -- store one-line notes and copy them
+        --, ("M-p o", spawn "dm-bookman")       -- qutebrowser bookmarks/history
+        --, ("M-p p", spawn "passmenu")         -- passmenu
+        --, ("M-p q", spawn "dm-logout")        -- logout menu
+        --, ("M-p r", spawn "dm-reddit")        -- reddio (a reddit viewer)
+        --, ("M-p s", spawn "dm-websearch")     -- search various search engines
+        --, ("M-p t", spawn "dm-translate")     -- translate text (Google Translate)
 
     -- KB_GROUP Useful programs to have a keybinding for launch
         , ("M-<Return>", spawn (myTerminal))
@@ -530,12 +528,12 @@ myKeys =
         , ("<XF86AudioMute>", spawn "amixer set Master toggle")
         , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
         , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        , ("<XF86HomePage>", spawn "qutebrowser https://www.youtube.com/c/DistroTube")
-        , ("<XF86Search>", spawn "dm-websearch")
+        , ("<XF86HomePage>", spawn "brave https://github.com/Ninja-Yubaraj")
+        --, ("<XF86Search>", spawn "dm-websearch")
         , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
         , ("<XF86Calculator>", runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
         , ("<XF86Eject>", spawn "toggleeject")
-        , ("<Print>", spawn "dm-maim")
+        --, ("<Print>", spawn "dm-maim")
         ]
     -- The following lines are needed for named scratchpads.
           where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
@@ -548,12 +546,15 @@ main :: IO ()
 main = do
     -- Launching three instances of xmobar on their monitors.
     -- Uncomment xmproc1 and xmproc2 if you have more than a single monitor.
-    xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
-    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc_pywal")
+
+    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
+    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/pywal-xmobarrc")
     --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
     --xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
     --xmproc2 <- spawnPipe ("xmobar -x 2 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+
     -- the xmonad, ya know...what the WM is named after!
+
     xmonad $ ewmh def
         { manageHook         = myManageHook <+> manageDocks
         , handleEventHook    = docksEventHook
