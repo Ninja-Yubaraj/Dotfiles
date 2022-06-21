@@ -11,7 +11,7 @@
   -- Base
 import XMonad
 import System.Directory
-import System.IO (hPutStrLn)
+import System.IO (hClose, hPutStr, hPutStrLn)
 import System.Exit (exitSuccess)
 import qualified XMonad.StackSet as W
 
@@ -71,7 +71,8 @@ import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
    -- Utilities
 import XMonad.Util.Dmenu
-import XMonad.Util.EZConfig (additionalKeysP)
+import XMonad.Util.EZConfig (additionalKeysP, mkNamedKeymap)
+import XMonad.Util.NamedActions
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
@@ -88,8 +89,7 @@ import XMonad.Util.SpawnOnce
       -- SolarizedDark
       -- SolarizedLight
       -- TomorrowNight
-      -- Pywal
-import Colors.Dracula
+import Colors.DoomOne
 
   -- Variables --
 
@@ -98,35 +98,38 @@ myFont :: String
 myFont = "xft:Mononoki Nerd Font:regular:size=9:antialias=true:hinting=true"
 
 myModMask :: KeyMask
---myModMask = mod1Mask                     -- Sets modkey to ALT key (Default)
-myModMask = mod4Mask                       -- Sets modkey to super/windows key
+--myModMask = mod1Mask                      -- Sets modkey to ALT key (Default)
+myModMask = mod4Mask                        -- Sets modkey to super/windows key
 
 myTerminal :: String
---myTerminal = "xterm"                     -- Sets default terminal to xterm (Default)
-myTerminal = "kitty"                       -- Sets default terminal to kitty
---myTerminal = "alacritty"                 -- Sets default terminal
+--myTerminal = "xterm"                      -- Sets default terminal to xterm (Default)
+myTerminal = "kitty"                        -- Sets default terminal to kitty
+--myTerminal = "alacritty"                  -- Sets default terminal
 
 myBrowser :: String
-myBrowser = "brave "                       -- Sets brave as browser
---myBrowser = "firefox "                   -- Sets firefox as browser
---myBrowser = "qutebrowser "               -- Sets qutebrowser as browser
+myBrowser = "brave "                        -- Sets brave as browser
+--myBrowser = "firefox "                    -- Sets firefox as browser
+--myBrowser = "qutebrowser "                -- Sets qutebrowser as browser
 
 --myEmacs :: String
---myEmacs = "emacsclient -c -a 'emacs' "   -- Makes emacs keybindings easier to type
+--myEmacs = "emacsclient -c -a 'emacs' "    -- Makes emacs keybindings easier to type
 
 myEditor :: String
---myEditor = "emacsclient -c -a 'emacs' "  -- Sets emacs as editor
-myEditor = myTerminal ++ " -e vim "        -- Sets vim as editor
+--myEditor = "emacsclient -c -a 'emacs' "   -- Sets emacs as editor
+myEditor = myTerminal ++ " -e vim "         -- Sets vim as editor
 
 myBorderWidth :: Dimension
---myBorderWidth = 1                        -- Sets border width for windows (Default)
-myBorderWidth = 2                          -- Sets border width for windows
+--myBorderWidth = 1                         -- Sets border width for windows (Default)
+myBorderWidth = 2                           -- Sets border width for windows
 
-myNormColor :: String                      -- Border color of normal windows
-myNormColor   = colorBack                  -- This variable is imported from Colors.THEME
+myNormColor :: String                       -- Border color of normal windows
+myNormColor   = colorBack                   -- This variable is imported from Colors.THEME
 
-myFocusColor :: String                     -- Border color of focused windows
-myFocusColor  = color15                    -- This variable is imported from Colors.THEME
+myFocusColor :: String                      -- Border color of focused windows
+myFocusColor  = color15                     -- This variable is imported from Colors.THEME
+
+mySoundPlayer :: String
+mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -135,6 +138,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
+    --spawnOnce (mySoundPlayer ++ startupSound)
     spawn "killall conky"                                                                              -- kill current conky on each restart
     spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
