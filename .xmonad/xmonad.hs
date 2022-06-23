@@ -138,7 +138,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 
 myStartupHook :: X ()
 myStartupHook = do
-    --spawnOnce (mySoundPlayer ++ startupSound)
+    --spawnOnce (mySoundPlayer ++ startupSound)                                                        -- Startup Sound
     spawn "killall conky"                                                                              -- kill current conky on each restart
     spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
@@ -158,13 +158,35 @@ myStartupHook = do
 
   -- Gridselect --
 
+myNavigation :: TwoD a (Maybe a)
+myNavigation = makeXEventhandler $ shadowWithKeymap navKeyMap navDefaultHandler
+ where navKeyMap = M.fromList [
+          ((0,xK_Escape), cancel)
+         ,((0,xK_Return), select)
+         ,((0,xK_slash) , substringSearch myNavigation)
+         ,((0,xK_Left)  , move (-1,0)  >> myNavigation)
+         ,((0,xK_h)     , move (-1,0)  >> myNavigation)
+         ,((0,xK_Right) , move (1,0)   >> myNavigation)
+         ,((0,xK_l)     , move (1,0)   >> myNavigation)
+         ,((0,xK_Down)  , move (0,1)   >> myNavigation)
+         ,((0,xK_j)     , move (0,1)   >> myNavigation)
+         ,((0,xK_Up)    , move (0,-1)  >> myNavigation)
+         ,((0,xK_k)     , move (0,-1)  >> myNavigation)
+         ,((0,xK_y)     , move (-1,-1) >> myNavigation)
+         ,((0,xK_i)     , move (1,-1)  >> myNavigation)
+         ,((0,xK_n)     , move (-1,1)  >> myNavigation)
+         ,((0,xK_m)     , move (1,-1)  >> myNavigation)
+         ,((0,xK_space) , setPos (0,0) >> myNavigation)
+         ]
+       navDefaultHandler = const myNavigation
+
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
-                  (0x28,0x2c,0x34) -- lowest inactive bg
-                  (0x28,0x2c,0x34) -- highest inactive bg
-                  (0xc7,0x92,0xea) -- active bg
-                  (0xc0,0xa7,0x9a) -- inactive fg
-                  (0x28,0x2c,0x34) -- active fg
+                (0x28,0x2c,0x34) -- lowest inactive bg
+                (0x28,0x2c,0x34) -- highest inactive bg
+                (0xc7,0x92,0xea) -- active bg
+                (0xc0,0xa7,0x9a) -- inactive fg
+                (0x28,0x2c,0x34) -- active fg
 
 -- gridSelect menu layout
 mygridConfig :: p -> GSConfig Window
@@ -172,6 +194,7 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 40
     , gs_cellwidth    = 200
     , gs_cellpadding  = 6
+    , gs_navigate    = myNavigation
     , gs_originFractX = 0.5
     , gs_originFractY = 0.5
     , gs_font         = myFont
@@ -181,26 +204,116 @@ spawnSelected' :: [(String, String)] -> X ()
 spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
     where conf = def
                    { gs_cellheight   = 40
-                   , gs_cellwidth    = 200
+                   , gs_cellwidth    = 180
                    , gs_cellpadding  = 6
                    , gs_originFractX = 0.5
                    , gs_originFractY = 0.5
                    , gs_font         = myFont
                    }
 
-myAppGrid = [ ("Audacity", "audacity")
-                 , ("Deadbeef", "deadbeef")
-                 , ("Emacs", "emacsclient -c -a emacs")
-                 , ("Firefox", "firefox")
-                 , ("Geany", "geany")
-                 , ("Geary", "geary")
-                 , ("Gimp", "gimp")
-                 , ("Kdenlive", "kdenlive")
-                 , ("LibreOffice Impress", "loimpress")
-                 , ("LibreOffice Writer", "lowriter")
-                 , ("OBS", "obs")
-                 , ("PCManFM", "pcmanfm")
-                 ]
+runSelectedAction' :: GSConfig (X ()) -> [(String, X ())] -> X ()
+runSelectedAction' conf actions = do
+    selectedActionM <- gridselect conf actions
+    case selectedActionM of
+        Just selectedAction -> selectedAction
+        Nothing -> return ()
+
+-- gsCategories =
+--   [ ("Games",      spawnSelected' gsGames)
+--   --, ("Education",   spawnSelected' gsEducation)
+--   , ("Internet",   spawnSelected' gsInternet)
+--   , ("Multimedia", spawnSelected' gsMultimedia)
+--   , ("Office",     spawnSelected' gsOffice)
+--   , ("Settings",   spawnSelected' gsSettings)
+--   , ("System",     spawnSelected' gsSystem)
+--   , ("Utilities",  spawnSelected' gsUtilities)
+--   ]
+
+gsCategories =
+  [ ("Games",      "xdotool key super+alt+1")
+  , ("Education",  "xdotool key super+alt+2")
+  , ("Internet",   "xdotool key super+alt+3")
+  , ("Multimedia", "xdotool key super+alt+4")
+  , ("Office",     "xdotool key super+alt+5")
+  , ("Settings",   "xdotool key super+alt+6")
+  , ("System",     "xdotool key super+alt+7")
+  , ("Utilities",  "xdotool key super+alt+8")
+  ]
+
+gsGames =
+  [ ("0 A.D.", "0ad")
+  , ("Battle For Wesnoth", "wesnoth")
+  , ("OpenArena", "openarena")
+  , ("Sauerbraten", "sauerbraten")
+  , ("Steam", "steam")
+  , ("Unvanquished", "unvanquished")
+  , ("Xonotic", "xonotic-glx")
+  ]
+
+gsEducation =
+  [ ("GCompris", "gcompris-qt")
+  , ("Kstars", "kstars")
+  , ("Minuet", "minuet")
+  , ("Scratch", "scratch")
+  ]
+
+gsInternet =
+  [ ("Brave", "brave")
+  , ("Discord", "discord")
+  , ("Element", "element-desktop")
+  , ("Firefox", "firefox")
+  , ("LBRY App", "lbry")
+  , ("Mailspring", "mailspring")
+  , ("Nextcloud", "nextcloud")
+  , ("Qutebrowser", "qutebrowser")
+  , ("Transmission", "transmission-gtk")
+  , ("Zoom", "zoom")
+  ]
+
+gsMultimedia =
+  [ ("Audacity", "audacity")
+  , ("Blender", "blender")
+  , ("Deadbeef", "deadbeef")
+  , ("Kdenlive", "kdenlive")
+  , ("OBS Studio", "obs")
+  , ("VLC", "vlc")
+  ]
+
+gsOffice =
+  [ ("Document Viewer", "evince")
+  , ("LibreOffice", "libreoffice")
+  , ("LO Base", "lobase")
+  , ("LO Calc", "localc")
+  , ("LO Draw", "lodraw")
+  , ("LO Impress", "loimpress")
+  , ("LO Math", "lomath")
+  , ("LO Writer", "lowriter")
+  ]
+
+gsSettings =
+  [ ("ARandR", "arandr")
+  , ("ArchLinux Tweak Tool", "archlinux-tweak-tool")
+  , ("Customize Look and Feel", "lxappearance")
+  , ("Firewall Configuration", "sudo gufw")
+  ]
+
+gsSystem =
+  [ ("Alacritty", "alacritty")
+  , ("Bash", (myTerminal ++ " -e bash"))
+  , ("Htop", (myTerminal ++ " -e htop"))
+  , ("Fish", (myTerminal ++ " -e fish"))
+  , ("PCManFM", "pcmanfm")
+  , ("VirtualBox", "virtualbox")
+  , ("Virt-Manager", "virt-manager")
+  , ("Zsh", (myTerminal ++ " -e zsh"))
+  ]
+
+gsUtilities =
+  [ ("Emacs", "emacs")
+  , ("Emacsclient", "emacsclient -c -a 'emacs'")
+  , ("Nitrogen", "nitrogen")
+  , ("Vim", (myTerminal ++ " -e vim"))
+  ]
 
   -- Scratchpads --
 
@@ -330,28 +443,31 @@ myTabTheme = def { fontName            = myFont
 -- Theme for showWName which prints current workspace when you change workspaces.
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-    --{ swn_font              = "xft:Mononoki Nerd Font:bold:size=60"
-    { swn_font              = "xft:Ubuntu Nerd Font Complete:bold:size=60"
-    , swn_fade              = 1.0
-    , swn_bgcolor           = "#1c1f24"
-    , swn_color             = "#ffffff"
-    }
+  --{ swn_font              = "xft:Ubuntu:bold:size=60"
+  { swn_font              = "xft:Ubuntu Nerd Font Complete:bold:size=60"
+  , swn_fade              = 1.0
+  , swn_bgcolor           = "#1c1f24"
+  , swn_color             = "#ffffff"
+  }
 
 -- The layout hook
-myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts floats
+myLayoutHook = avoidStruts
+               $ mouseResize
+               $ windowArrange
+               $ T.toggleLayouts floats
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
-             where
-               myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
-                                 ||| noBorders monocle
-                                 ||| floats
-                                 ||| noBorders tabs
-                                 ||| grid
-                                 ||| spirals
-                                 ||| threeCol
-                                 ||| threeRow
-                                 ||| tallAccordion
-                                 ||| wideAccordion
+  where
+    myDefaultLayout = withBorder myBorderWidth tall
+                      ||| magnify
+                      ||| noBorders monocle
+                      ||| floats
+                      ||| noBorders tabs
+                      ||| grid
+                      ||| spirals
+                      ||| threeCol
+                      ||| threeRow
+                      ||| tallAccordion
+                      ||| wideAccordion
 
   -- Workspaces --
 
@@ -366,239 +482,259 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-     -- 'doFloat' forces a window to float.  Useful for dialog boxes and such.
-     -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
-     -- I'm doing it this way because otherwise I would have to write out the full
-     -- name of my workspaces and the names would be very long if using clickable workspaces.
-     [ className =? "confirm"         --> doFloat
-     , className =? "file_progress"   --> doFloat
-     , className =? "dialog"          --> doFloat
-     , className =? "download"        --> doFloat
-     , className =? "error"           --> doFloat
-     , className =? "Gimp"            --> doFloat
-     , className =? "notification"    --> doFloat
-     , className =? "pinentry-gtk-2"  --> doFloat
-     , className =? "splash"          --> doFloat
-     , className =? "toolbar"         --> doFloat
-     , className =? "Yad"             --> doCenterFloat
-     , title =? "Oracle VM VirtualBox Manager"  --> doFloat
-     , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
-     , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
-     , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
-     , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
-     , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
-     , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
-     , isFullscreen -->  doFullFloat
-     ] <+> namedScratchpadManageHook myScratchPads
+  -- 'doFloat' forces a window to float.  Useful for dialog boxes and such.
+  -- using 'doShift ( myWorkspaces !! 7)' sends program to workspace 8!
+  -- I'm doing it this way because otherwise I would have to write out the full
+  -- name of my workspaces and the names would be very long if using clickable workspaces.
+  [ className =? "confirm"         --> doFloat
+  , className =? "file_progress"   --> doFloat
+  , className =? "dialog"          --> doFloat
+  , className =? "download"        --> doFloat
+  , className =? "error"           --> doFloat
+  , className =? "Gimp"            --> doFloat
+  , className =? "notification"    --> doFloat
+  , className =? "pinentry-gtk-2"  --> doFloat
+  , className =? "splash"          --> doFloat
+  , className =? "toolbar"         --> doFloat
+  , className =? "Yad"             --> doCenterFloat
+  , title =? "Oracle VM VirtualBox Manager"  --> doFloat
+  , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
+  , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 1 )
+  , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
+  , className =? "Gimp"            --> doShift ( myWorkspaces !! 8 )
+  , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )
+  , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
+  , isFullscreen -->  doFullFloat
+  ] <+> namedScratchpadManageHook myScratchPads
+
+soundDir = "/opt/system-sounds/" -- The directory that has the sound files
+
+startupSound  = soundDir ++ "startup-01.mp3"
+shutdownSound = soundDir ++ "shutdown-01.mp3"
+dmenuSound    = soundDir ++ "menu-01.mp3"
+
+showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
+showKeybindings x = addName "Show Keybindings" $ io $ do
+  h <- spawnPipe $ "yad --text-info --fontname=\"SauceCodePro Nerd Font Mono 12\" --fore=#46d9ff back=#282c36 --center --geometry=1200x800 --title \"XMonad keybindings\""
+  hPutStr h (unlines $ showKm x)
+  hClose h
+  return ()
 
   -- Keybindings --
 
 -- START_KEYS
-myKeys :: [(String, X ())]
-myKeys =
-    -- KB_GROUP Xmonad
-        [ ("M-C-r", spawn "xmonad --recompile")       -- Recompiles xmonad
-        , ("M-S-r", spawn "xmonad --restart")         -- Restarts xmonad
-        , ("M-S-q", io exitSuccess)                   -- Quits xmonad
+myKeys :: XConfig l0 -> [((KeyMask, KeySym), NamedAction)]
+myKeys c = (subtitle "Custom Keys":) $ mkNamedKeymap c $
+  -- Xmonad
+  [ ("M-C-r", addName "Recompile XMonad"         $ spawn "xmonad --recompile")
+  , ("M-S-r", addName "Restart XMonad"           $ spawn "xmonad --restart")
+  , ("M-S-q", addName "Quit XMonad"              $ sequence_ [spawn (mySoundPlayer ++ shutdownSound), io exitSuccess])
+  , ("M-S-/", addName "List all keybindings"     $ spawn "~/.xmonad/xmonad_keys.sh")
 
-    -- KB_GROUP Get Help
-        , ("M-S-/", spawn "~/.xmonad/xmonad_keys.sh") -- Get list of keybindings
-        --, ("M-/", spawn "dtos-help")                  -- DTOS help/tutorial videos
+  -- Run prompt (dmenu)
+  , ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-run"])
+  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-pywal-run"])
 
-    -- KB_GROUP Run Prompt
-        , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
-        --, ("M-S-<Return>", spawn "dmenu_pywal_run") -- Dmenu with pywal colors
+  -- Dmenu scripts (dmscripts)
+  -- In Xmonad and many tiling window managers, M-p is the default keybinding to
+  -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
+  --, ("M-p h", addName "List all dmscripts"       $ spawn "dm-hub")
+  --, ("M-p a", addName "Choose ambient sound"     $ spawn "dm-sounds")
+  --, ("M-p b", addName "Set background"           $ spawn "dm-setbg")
+  --, ("M-p c", addName "Choose color scheme"      $ spawn "dtos-colorscheme")
+  --, ("M-p C", addName "Pick color from scheme"   $ spawn "dm-colpick")
+  --, ("M-p e", addName "Edit config files"        $ spawn "dm-confedit")
+  --, ("M-p i", addName "Take a screenshot"        $ spawn "dm-maim")
+  --, ("M-p k", addName "Kill processes"           $ spawn "dm-kill")
+  --, ("M-p m", addName "View manpages"            $ spawn "dm-man")
+  --, ("M-p n", addName "Store and copy notes"     $ spawn "dm-note")
+  --, ("M-p o", addName "Browser bookmarks"        $ spawn "dm-bookman")
+  --, ("M-p p", addName "Passmenu"                 $ spawn "passmenu -p \"Pass: \"")
+  --, ("M-p q", addName "Logout Menu"              $ spawn "dm-logout")
+  --, ("M-p r", addName "Listen to online radio"   $ spawn "dm-radio")
+  --, ("M-p s", addName "Search various engines"   $ spawn "dm-websearch")
+  --, ("M-p t", addName "Translate text"           $ spawn "dm-translate")
 
-    -- KB_GROUP Other Dmenu Prompts
-    -- In Xmonad and many tiling window managers, M-p is the default keybinding to
-    -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        --, ("M-p h", spawn "dm-hub")           -- allows access to all dmscripts
-        --, ("M-p a", spawn "dm-sounds")        -- choose an ambient background
-        --, ("M-p b", spawn "dm-setbg")         -- set a background
-        --, ("M-p c", spawn "dtos-colorscheme") -- choose a colorscheme
-        --, ("M-p C", spawn "dm-colpick")       -- pick color from our scheme
-        --, ("M-p e", spawn "dm-confedit")      -- edit config files
-        --, ("M-p i", spawn "dm-maim")          -- screenshots (images)
-        --, ("M-p k", spawn "dm-kill")          -- kill processes
-        --, ("M-p m", spawn "dm-man")           -- manpages
-        --, ("M-p n", spawn "dm-note")          -- store one-line notes and copy them
-        --, ("M-p o", spawn "dm-bookman")       -- qutebrowser bookmarks/history
-        --, ("M-p p", spawn "passmenu")         -- passmenu
-        --, ("M-p q", spawn "dm-logout")        -- logout menu
-        --, ("M-p r", spawn "dm-reddit")        -- reddio (a reddit viewer)
-        --, ("M-p s", spawn "dm-websearch")     -- search various search engines
-        --, ("M-p t", spawn "dm-translate")     -- translate text (Google Translate)
+  -- Useful programs to have a keybinding for launch
+  , ("M-<Return>", addName "Launch terminal"     $ spawn (myTerminal))
+  , ("M-b", addName "Launch web browser"         $ spawn (myBrowser))
+  , ("M-M1-h", addName "Launch htop"             $ spawn (myTerminal ++ " -e htop"))
 
-    -- KB_GROUP Useful programs to have a keybinding for launch
-        , ("M-<Return>", spawn (myTerminal))
-        , ("M-b", spawn (myBrowser))
-        , ("M-M1-h", spawn (myTerminal ++ " -e htop"))
+  -- Kill windows
+  , ("M-S-c", addName "Kill focused window"      $ kill1)
+  , ("M-S-a", addName "Kill all windows on WS"   $ killAll)
 
-    -- KB_GROUP Kill windows
-        , ("M-S-c", kill1)     -- Kill the currently focused client
-        , ("M-S-a", killAll)   -- Kill all windows on current workspace
+  -- Workspaces
+  , ("M-.", addName "Switch focus to next mon"   $ nextScreen)
+  , ("M-,", addName "Switch focus to prev mon"   $ prevScreen)
+  , ("M-S-<KP_Add>", addName "Move window to next WS"      $ shiftTo Next nonNSP >> moveTo Next nonNSP)
+  , ("M-S-<KP_Subtract>", addName "Move window to prev WS" $ shiftTo Prev nonNSP >> moveTo Prev nonNSP)
 
-    -- KB_GROUP Workspaces
-        , ("M-.", nextScreen)  -- Switch focus to next monitor
-        , ("M-,", prevScreen)  -- Switch focus to prev monitor
-        , ("M-S-<KP_Add>", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
-        , ("M-S-<KP_Subtract>", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
+  -- Floating windows
+  , ("M-f", addName "Toggle float layout"        $ sendMessage (T.Toggle "floats"))
+  , ("M-t", addName "Sink a floating window"     $ withFocused $ windows . W.sink)
+  , ("M-S-t", addName "Sink all floated windows" $ sinkAll)
 
-    -- KB_GROUP Floating windows
-        , ("M-f", sendMessage (T.Toggle "floats")) -- Toggles my 'floats' layout
-        , ("M-t", withFocused $ windows . W.sink)  -- Push floating window back to tile
-        , ("M-S-t", sinkAll)                       -- Push ALL floating windows to tile
+  -- Increase/decrease spacing (gaps)
+  , ("C-M1-j", addName "Decrease window spacing" $ decWindowSpacing 4)
+  , ("C-M1-k", addName "Increase window spacing" $ incWindowSpacing 4)
+  , ("C-M1-h", addName "Decrease screen spacing" $ decScreenSpacing 4)
+  , ("C-M1-l", addName "Increase screen spacing" $ incScreenSpacing 4)
 
-    -- KB_GROUP Increase/decrease spacing (gaps)
-        , ("C-M1-j", decWindowSpacing 4)         -- Decrease window spacing
-        , ("C-M1-k", incWindowSpacing 4)         -- Increase window spacing
-        , ("C-M1-h", decScreenSpacing 4)         -- Decrease screen spacing
-        , ("C-M1-l", incScreenSpacing 4)         -- Increase screen spacing
+  -- Grid Select (CTR-g followed by a key)
+  -- , ("C-g g", addName "Select favorite apps"     $ runSelectedAction' defaultGSConfig gsCategories)
+  , ("M-M1-<Return>", addName "Select favorite apps" $ spawnSelected'
+       $ gsGames ++ gsEducation ++ gsInternet ++ gsMultimedia ++ gsOffice ++ gsSettings ++ gsSystem ++ gsUtilities)
+  , ("M-M1-c", addName "Select favorite apps" $ spawnSelected' gsCategories)
+  , ("M-M1-t", addName "Goto selected window"        $ goToSelected $ mygridConfig myColorizer)
+  , ("M-M1-b", addName "Bring selected window"       $ bringSelected $ mygridConfig myColorizer)
+  , ("M-M1-1", addName "Menu of games"               $ spawnSelected' gsGames)
+  , ("M-M1-2", addName "Menu of education apps"      $ spawnSelected' gsEducation)
+  , ("M-M1-3", addName "Menu of Internet apps"       $ spawnSelected' gsInternet)
+  , ("M-M1-4", addName "Menu of multimedia apps"     $ spawnSelected' gsMultimedia)
+  , ("M-M1-5", addName "Menu of office apps"         $ spawnSelected' gsOffice)
+  , ("M-M1-6", addName "Menu of settings apps"       $ spawnSelected' gsSettings)
+  , ("M-M1-7", addName "Menu of system apps"         $ spawnSelected' gsSystem)
+  , ("M-M1-8", addName "Menu of utilities apps"      $ spawnSelected' gsUtilities)
 
-    -- KB_GROUP Grid Select (CTR-g followed by a key)
-        , ("C-g g", spawnSelected' myAppGrid)                 -- grid select favorite apps
-        , ("C-g t", goToSelected $ mygridConfig myColorizer)  -- goto selected window
-        , ("C-g b", bringSelected $ mygridConfig myColorizer) -- bring selected window
+  -- Windows navigation
+  , ("M-m", addName "Move focus to master window" $ windows W.focusMaster)
+  , ("M-j", addName "Move focus to next window"   $ windows W.focusDown)
+  , ("M-k", addName "Move focus to prev window"   $ windows W.focusUp)
+  , ("M-S-m", addName "Swap focused window with master window" $ windows W.swapMaster)
+  , ("M-S-j", addName "Swap focused window with next window"   $ windows W.swapDown)
+  , ("M-S-k", addName "Swap focused window with prev window"   $ windows W.swapUp)
+  , ("M-<Backspace>", addName "Move focused window to master"  $ promote)
+  , ("M-S-<Tab>", addName "Rotate all windows except master"   $ rotSlavesDown)
+  , ("M-C-<Tab>", addName "Rotate all windows current stack"   $ rotAllDown)
 
-    -- KB_GROUP Windows navigation
-        , ("M-m", windows W.focusMaster)  -- Move focus to the master window
-        , ("M-j", windows W.focusDown)    -- Move focus to the next window
-        , ("M-k", windows W.focusUp)      -- Move focus to the prev window
-        , ("M-S-m", windows W.swapMaster) -- Swap the focused window and the master window
-        , ("M-S-j", windows W.swapDown)   -- Swap focused window with next window
-        , ("M-S-k", windows W.swapUp)     -- Swap focused window with prev window
-        , ("M-<Backspace>", promote)      -- Moves focused window to master, others maintain order
-        , ("M-S-<Tab>", rotSlavesDown)    -- Rotate all windows except master and keep focus in place
-        , ("M-C-<Tab>", rotAllDown)       -- Rotate all the windows in the current stack
+  -- Layouts
+  , ("M-<Tab>", addName "Switch to next layout"   $ sendMessage NextLayout)
+  , ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
 
-    -- KB_GROUP Layouts
-        , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
-        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+  -- Increase/decrease windows in the master pane or the stack
+  , ("M-S-<Up>", addName "Increase clients in master pane"   $ sendMessage (IncMasterN 1))
+  , ("M-S-<Down>", addName "Decrease clients in master pane" $ sendMessage (IncMasterN (-1)))
+  , ("M-C-<Up>", addName "Increase # of windows"             $ increaseLimit)
+  , ("M-C-<Down>", addName "Decrease # of windows"           $ decreaseLimit)
 
-    -- KB_GROUP Increase/decrease windows in the master pane or the stack
-        , ("M-S-<Up>", sendMessage (IncMasterN 1))      -- Increase # of clients master pane
-        , ("M-S-<Down>", sendMessage (IncMasterN (-1))) -- Decrease # of clients master pane
-        , ("M-C-<Up>", increaseLimit)                   -- Increase # of windows
-        , ("M-C-<Down>", decreaseLimit)                 -- Decrease # of windows
+  -- Window resizing
+  , ("M-h", addName "Shrink window"               $ sendMessage Shrink)
+  , ("M-l", addName "Expand window"               $ sendMessage Expand)
+  , ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink)
+  , ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)
 
-    -- KB_GROUP Window resizing
-        , ("M-h", sendMessage Shrink)                   -- Shrink horiz window width
-        , ("M-l", sendMessage Expand)                   -- Expand horiz window width
-        , ("M-M1-j", sendMessage MirrorShrink)          -- Shrink vert window width
-        , ("M-M1-k", sendMessage MirrorExpand)          -- Expand vert window width
+  -- Sublayouts
+  -- This is used to push windows to tabbed sublayouts, or pull them out of it.
+  , ("M-C-h", addName "pullGroup L"           $ sendMessage $ pullGroup L)
+  , ("M-C-l", addName "pullGroup R"           $ sendMessage $ pullGroup R)
+  , ("M-C-k", addName "pullGroup U"           $ sendMessage $ pullGroup U)
+  , ("M-C-j", addName "pullGroup D"           $ sendMessage $ pullGroup D)
+  , ("M-C-m", addName "MergeAll"              $ withFocused (sendMessage . MergeAll))
+  -- , ("M-C-u", addName "UnMerge"               $ withFocused (sendMessage . UnMerge))
+  , ("M-C-/", addName "UnMergeAll"            $  withFocused (sendMessage . UnMergeAll))
+  , ("M-C-.", addName "Switch focus next tab" $  onGroup W.focusUp')    -- Switch focus to next tab
+  , ("M-C-,", addName "Switch focus prev tab" $  onGroup W.focusDown')  -- Switch focus to prev tab
 
-    -- KB_GROUP Sublayouts
-    -- This is used to push windows to tabbed sublayouts, or pull them out of it.
-        , ("M-C-h", sendMessage $ pullGroup L)
-        , ("M-C-l", sendMessage $ pullGroup R)
-        , ("M-C-k", sendMessage $ pullGroup U)
-        , ("M-C-j", sendMessage $ pullGroup D)
-        , ("M-C-m", withFocused (sendMessage . MergeAll))
-        -- , ("M-C-u", withFocused (sendMessage . UnMerge))
-        , ("M-C-/", withFocused (sendMessage . UnMergeAll))
-        , ("M-C-.", onGroup W.focusUp')    -- Switch focus to next tab
-        , ("M-C-,", onGroup W.focusDown')  -- Switch focus to prev tab
+  -- Scratchpads
+  -- Toggle show/hide these programs. They run on a hidden workspace.
+  -- When you toggle them to show, it brings them to current workspace.
+  -- Toggle them to hide and it sends them back to hidden workspace (NSP).
+  , ("M-s t", addName "Toggle scratchpad terminal"   $ namedScratchpadAction myScratchPads "terminal")
+  , ("M-s m", addName "Toggle scratchpad mocp"       $ namedScratchpadAction myScratchPads "mocp")
+  , ("M-s c", addName "Toggle scratchpad calculator" $ namedScratchpadAction myScratchPads "calculator")
 
-    -- KB_GROUP Scratchpads
-    -- Toggle show/hide these programs.  They run on a hidden workspace.
-    -- When you toggle them to show, it brings them to your current workspace.
-    -- Toggle them to hide and it sends them back to hidden workspace (NSP).
-        , ("M-s t", namedScratchpadAction myScratchPads "terminal")
-        , ("M-s m", namedScratchpadAction myScratchPads "mocp")
-        , ("M-s c", namedScratchpadAction myScratchPads "calculator")
+  -- Controls for mocp music player (SUPER-u followed by a key)
+  , ("M-u p", addName "mocp play"                $ spawn "mocp --play")
+  , ("M-u l", addName "mocp next"                $ spawn "mocp --next")
+  , ("M-u h", addName "mocp prev"                $ spawn "mocp --previous")
+  , ("M-u <Space>", addName "mocp toggle pause"  $ spawn "mocp --toggle-pause")
 
-    -- KB_GROUP Controls for mocp music player (SUPER-u followed by a key)
-        , ("M-u p", spawn "mocp --play")
-        , ("M-u l", spawn "mocp --next")
-        , ("M-u h", spawn "mocp --previous")
-        , ("M-u <Space>", spawn "mocp --toggle-pause")
+  -- Emacs (SUPER-e followed by a key)
+  --, ("M-e e", addName "Emacsclient Dashboard"    $ spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))
+  --, ("M-e b", addName "Emacsclient Ibuffer"      $ spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+  --, ("M-e d", addName "Emacsclient Dired"        $ spawn (myEmacs ++ ("--eval '(dired nil)'")))
+  --, ("M-e i", addName "Emacsclient ERC (IRC)"    $ spawn (myEmacs ++ ("--eval '(erc)'")))
+  --, ("M-e n", addName "Emacsclient Elfeed (RSS)" $ spawn (myEmacs ++ ("--eval '(elfeed)'")))
+  --, ("M-e s", addName "Emacsclient Eshell"       $ spawn (myEmacs ++ ("--eval '(eshell)'")))
+  --, ("M-e t", addName "Emacsclient Mastodon"     $ spawn (myEmacs ++ ("--eval '(mastodon)'")))
+  --, ("M-e v", addName "Emacsclient Vterm"        $ spawn (myEmacs ++ ("--eval '(+vterm/here nil)'")))
+  --, ("M-e w", addName "Emacsclient EWW browser"  $ spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'")))
+  --, ("M-e a", addName "Emacsclient EMMS (music)" $ spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
 
-    -- KB_GROUP Emacs (SUPER-e followed by a key)
-        --, ("M-e e", spawn (myEmacs ++ ("--eval '(dashboard-refresh-buffer)'")))   -- emacs dashboard
-        --, ("M-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))   -- list buffers
-        --, ("M-e d", spawn (myEmacs ++ ("--eval '(dired nil)'"))) -- dired
-        --, ("M-e i", spawn (myEmacs ++ ("--eval '(erc)'")))       -- erc irc client
-        --, ("M-e n", spawn (myEmacs ++ ("--eval '(elfeed)'")))    -- elfeed rss
-        --, ("M-e s", spawn (myEmacs ++ ("--eval '(eshell)'")))    -- eshell
-        --, ("M-e t", spawn (myEmacs ++ ("--eval '(mastodon)'")))  -- mastodon.el
-        --, ("M-e v", spawn (myEmacs ++ ("--eval '(+vterm/here nil)'"))) -- vterm if on Doom Emacs
-        --, ("M-e w", spawn (myEmacs ++ ("--eval '(doom/window-maximize-buffer(eww \"distro.tube\"))'"))) -- eww browser if on Doom Emacs
-        --, ("M-e a", spawn (myEmacs ++ ("--eval '(emms)' --eval '(emms-play-directory-tree \"~/Music/\")'")))
-
-    -- KB_GROUP Multimedia Keys
-        , ("<XF86AudioPlay>", spawn "mocp --play")
-        , ("<XF86AudioPrev>", spawn "mocp --previous")
-        , ("<XF86AudioNext>", spawn "mocp --next")
-        , ("<XF86AudioMute>", spawn "amixer set Master toggle")
-        , ("<XF86AudioLowerVolume>", spawn "amixer set Master 5%- unmute")
-        , ("<XF86AudioRaiseVolume>", spawn "amixer set Master 5%+ unmute")
-        , ("<XF86HomePage>", spawn "brave https://github.com/Ninja-Yubaraj")
-        --, ("<XF86Search>", spawn "dm-websearch")
-        , ("<XF86Mail>", runOrRaise "thunderbird" (resource =? "thunderbird"))
-        , ("<XF86Calculator>", runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
-        , ("<XF86Eject>", spawn "toggleeject")
-        --, ("<Print>", spawn "dm-maim")
-        ]
-    -- The following lines are needed for named scratchpads.
-          where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
-                nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
+  -- Multimedia Keys
+  , ("<XF86AudioPlay>", addName "mocp play"           $ spawn "mocp --play")
+  , ("<XF86AudioPrev>", addName "mocp next"           $ spawn "mocp --previous")
+  , ("<XF86AudioNext>", addName "mocp prev"           $ spawn "mocp --next")
+  , ("<XF86AudioMute>", addName "Toggle audio mute"   $ spawn "amixer set Master toggle")
+  , ("<XF86AudioLowerVolume>", addName "Lower vol"    $ spawn "amixer set Master 5%- unmute")
+  , ("<XF86AudioRaiseVolume>", addName "Raise vol"    $ spawn "amixer set Master 5%+ unmute")
+  , ("<XF86HomePage>", addName "Open home page"       $ spawn (myBrowser ++ " https://ninja-yubaraj.github.io"))
+  --, ("<XF86Search>", addName "Web search (dmscripts)" $ spawn "dm-websearch")
+  , ("<XF86Mail>", addName "Email client"             $ runOrRaise "thunderbird" (resource =? "thunderbird"))
+  , ("<XF86Calculator>", addName "Calculator"         $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
+  , ("<XF86Eject>", addName "Eject /dev/cdrom"        $ spawn "eject /dev/cdrom")
+  --, ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim")
+  ]
+  -- The following lines are needed for named scratchpads.
+    where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
+          nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
 -- END_KEYS
 
   -- Main --
 
 main :: IO ()
 main = do
-    -- Launching three instances of xmobar on their monitors.
-    -- Uncomment xmproc1 and xmproc2 if you have more than a single monitor.
+  -- Launching three instances of xmobar on their monitors.
 
-    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
-    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/pywal-xmobarrc")
-    --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
-    --xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
-    --xmproc2 <- spawnPipe ("xmobar -x 2 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobarrc")
+  --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/pywal-xmobarrc")
+  xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  --xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  --xmproc2 <- spawnPipe ("xmobar -x 2 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
 
-    -- the xmonad, ya know...what the WM is named after!
+  -- the xmonad, ya know...what the WM is named after!
 
-    xmonad $ ewmh def
-        { manageHook         = myManageHook <+> manageDocks
-        , handleEventHook    = docksEventHook
-                               -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
-                               -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
-                               -- it adds a border around the window if screen does not have focus. So, my solution
-                               -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
-                               -- <+> fullscreenEventHook
-        , modMask            = myModMask
-        , terminal           = myTerminal
-        , startupHook        = myStartupHook
-        , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
-        , workspaces         = myWorkspaces
-        , borderWidth        = myBorderWidth
-        , normalBorderColor  = myNormColor
-        , focusedBorderColor = myFocusColor
-        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-              -- XMOBAR SETTINGS
-              { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
-                              -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
-                              -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
-                -- Current workspace
-              , ppCurrent = xmobarColor color06 "" . wrap
-                            ("<box type=Bottom width=2 mb=2 color=" ++ color06 ++ ">") "</box>"
-                -- Visible but not current workspace
-              , ppVisible = xmobarColor color06 "" . clickable
-                -- Hidden workspace
-              , ppHidden = xmobarColor color05 "" . wrap
-                           ("<box type=Top width=2 mt=2 color=" ++ color05 ++ ">") "</box>" . clickable
-                -- Hidden workspaces (no windows)
-              , ppHiddenNoWindows = xmobarColor color05 ""  . clickable
-                -- Title of active window
-              , ppTitle = xmobarColor color16 "" . shorten 60
-                -- Separator character
-              , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
-                -- Urgent workspace
-              , ppUrgent = xmobarColor color02 "" . wrap "!" "!"
-                -- Adding # of windows on current workspace to the bar
-              , ppExtras  = [windowCount]
-                -- order of things in xmobar
-              , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
-              }
-        } `additionalKeysP` myKeys
+  xmonad $ addDescrKeys ((mod4Mask, xK_F1), showKeybindings) myKeys $ ewmh def
+    { manageHook         = myManageHook <+> manageDocks
+    , handleEventHook    = docksEventHook
+                           -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
+                           -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
+                           -- it adds a border around the window if screen does not have focus. So, my solution
+                           -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
+                           -- <+> fullscreenEventHook
+    , modMask            = myModMask
+    , terminal           = myTerminal
+    , startupHook        = myStartupHook
+    , layoutHook         = showWName' myShowWNameTheme $ myLayoutHook
+    , workspaces         = myWorkspaces
+    , borderWidth        = myBorderWidth
+    , normalBorderColor  = myNormColor
+    , focusedBorderColor = myFocusColor
+    , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
+        -- XMOBAR SETTINGS
+        { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
+                       -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
+                       -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
+          -- Current workspace
+        , ppCurrent = xmobarColor color06 "" . wrap
+                      ("<box type=Bottom width=2 mb=2 color=" ++ color06 ++ ">") "</box>"
+          -- Visible but not current workspace
+        , ppVisible = xmobarColor color06 "" . clickable
+          -- Hidden workspace
+        , ppHidden = xmobarColor color05 "" . wrap
+                     ("<box type=Top width=2 mt=2 color=" ++ color05 ++ ">") "</box>" . clickable
+          -- Hidden workspaces (no windows)
+        , ppHiddenNoWindows = xmobarColor color05 ""  . clickable
+          -- Title of active window
+        , ppTitle = xmobarColor color16 "" . shorten 60
+          -- Separator character
+        , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
+          -- Urgent workspace
+        , ppUrgent = xmobarColor color02 "" . wrap "!" "!"
+          -- Adding # of windows on current workspace to the bar
+        , ppExtras  = [windowCount]
+          -- order of things in xmobar
+        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+        }
+    }
