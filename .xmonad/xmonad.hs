@@ -532,8 +532,12 @@ myKeys c = (subtitle "Custom Keys":) $ mkNamedKeymap c $
   , ("M-S-/", addName "List all keybindings"     $ spawn "~/.xmonad/xmonad_keys.sh")
 
   -- Run prompt (dmenu)
-  , ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-run"])
-  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-pywal-run"])
+  --, ("M-S-<Return>", addName "Run prompt"        $ spawn "dmenu_run")
+  --, ("M-S-<Return>", addName "Run prompt"        $ spawn "$HOME/.local/bin/dmenu_pywal_run")
+  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dmenu_run"])
+  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dmenu_pywal_run"])
+  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-run"])                      -- Requires dmenu-distrotube
+  --, ("M-S-<Return>", addName "Run prompt"        $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dm-pywal-run"])                -- Requires dmenu-distrotube
 
   -- Dmenu scripts (dmscripts)
   -- In Xmonad and many tiling window managers, M-p is the default keybinding to
