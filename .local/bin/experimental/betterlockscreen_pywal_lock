@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# Script name: betterlockscreen_pywal_lock
+# Description: A standard script to lock screen session using betterlockscreen
+# with pywal colors, which I dont recommend using over /bin/pywal_set_wallpaper implementationk
+# as it's a little bit slow
+# Dependencies: betterlockscreen, pywal
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Contributors: Yubaraj Sarkar
+
+# Import the colors
+. "$HOME/.cache/wal/colors.sh"
+
+betterlockscreen -u $wallpaper
+betterlockscreen --quiet --lock blur

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# Dependencies: pywal, betterlockscreen
+
+wal -q -i "$1"
+
+# Import the colors
+. "$HOME/.cache/wal/colors.sh"
+
+betterlockscreen -u $wallpaper

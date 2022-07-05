@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 mkdir -p ~/Documents
 cat /tmp/clipboard.txt >> ~/Documents/savedclips.txt

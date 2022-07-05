@@ -417,6 +417,7 @@ alias anidw='ani-cli -d -q "worst"'                                             
 # pywal
 # Get this script from Github: https://github.com/dylanaraps/pywal
 #alias wal='wal -q -i'                                                              # pywal:        Change the color of the terminal
+#alias wal='pywal_set_wallpaper'
 
 # wttr.in
 # Github: https://github.com/chubin/wttr.in
