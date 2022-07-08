@@ -139,22 +139,23 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     --spawnOnce (mySoundPlayer ++ startupSound)                                                        -- Startup Sound
-    spawn "killall conky"                                                                              -- kill current conky on each restart
-    spawn "killall trayer"                                                                             -- kill current trayer on each restart
+    --spawn "killall conky"                                                                            -- kill current conky on each restart
+    --spawn "killall trayer"                                                                           -- kill current trayer on each restart
 
     --spawnOnce "lxsession"                                                                            -- start lxsession
-    spawnOnce "picom"                                                                                  -- start picom
+    --spawnOnce "picom"                                                                                -- start picom
+    --spawnOnce "picom --experimental-backends -b"                                                     -- start picom (experimental)
     --spawnOnce "nm-applet"                                                                            -- start network manager applet
     --spawnOnce "volumeicon"                                                                           -- start volumeicon
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
     --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")        -- start conky
-    --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
+    --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
     --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
     --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
     --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"                                             -- feh set random wallpaper
-    spawnOnce "nitrogen --restore &"                                                                   -- if you prefer nitrogen to feh
+    --spawnOnce "nitrogen --restore &"                                                                 -- if you prefer nitrogen to feh
     --spawnOnce "wal -R"                                                                               -- set wal colorscheme
-    setWMName "LG3D"                                                                                   -- set window manager to LG3D
+    --setWMName "LG3D"                                                                                 -- set window manager to LG3D
 
   -- Gridselect --
 
