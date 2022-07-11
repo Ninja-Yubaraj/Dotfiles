@@ -37,10 +37,12 @@ import qualified Data.Map as M
     -- Hooks
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
-import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.WorkspaceHistory
 
     -- Layouts
@@ -55,7 +57,6 @@ import XMonad.Layout.ThreeColumns
     -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.Magnifier
 import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
 import XMonad.Layout.NoBorders
@@ -364,20 +365,11 @@ mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 -- limitWindows n sets maximum number of windows displayed for layout.
 -- mySpacing n sets the gap size around the windows.
 tall     = renamed [Replace "tall"]
+           $ limitWindows 5
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 12
-           $ mySpacing 8
-           $ ResizableTall 1 (3/100) (1/2) []
-magnify  = renamed [Replace "magnify"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ magnifier
-           $ limitWindows 12
            $ mySpacing 8
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
@@ -385,20 +377,21 @@ monocle  = renamed [Replace "monocle"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 20 Full
+           $ Full
 floats   = renamed [Replace "floats"]
            $ smartBorders
-           $ limitWindows 20 simplestFloat
+           $ simplestFloat
 grid     = renamed [Replace "grid"]
+           $ limitWindows 9
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 12
            $ mySpacing 8
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 spirals  = renamed [Replace "spirals"]
+           $ limitWindows 9
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
@@ -406,18 +399,18 @@ spirals  = renamed [Replace "spirals"]
            $ mySpacing' 8
            $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
+           $ limitWindows 7
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
            $ ThreeCol 1 (3/100) (1/2)
 threeRow = renamed [Replace "threeRow"]
+           $ limitWindows 7
            $ smartBorders
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ limitWindows 7
            -- Mirror takes a layout and rotates it by 90 degrees.
            -- So we are applying Mirror to the ThreeCol layout.
            $ Mirror
@@ -459,16 +452,15 @@ myLayoutHook = avoidStruts
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout = withBorder myBorderWidth tall
-                      ||| magnify
-                      ||| noBorders monocle
-                      ||| floats
-                      ||| noBorders tabs
-                      ||| grid
-                      ||| spirals
-                      ||| threeCol
-                      ||| threeRow
-                      ||| tallAccordion
-                      ||| wideAccordion
+                                           ||| noBorders monocle
+                                           ||| floats
+                                           ||| noBorders tabs
+                                           ||| grid
+                                           ||| spirals
+                                           ||| threeCol
+                                           ||| threeRow
+                                           ||| tallAccordion
+                                           ||| wideAccordion
 
   -- Workspaces --
 
@@ -700,9 +692,9 @@ main = do
 
   -- the xmonad, ya know...what the WM is named after!
 
-  xmonad $ addDescrKeys ((mod4Mask, xK_F1), showKeybindings) myKeys $ ewmh def
+  xmonad $ addDescrKeys' ((mod4Mask, xK_F1), showKeybindings) myKeys $ ewmh $ docks $ def
     { manageHook         = myManageHook <+> manageDocks
-    , handleEventHook    = docksEventHook
+    --, handleEventHook    = docks
                            -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
                            -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
                            -- it adds a border around the window if screen does not have focus. So, my solution
@@ -716,8 +708,7 @@ main = do
     , borderWidth        = myBorderWidth
     , normalBorderColor  = myNormColor
     , focusedBorderColor = myFocusColor
-    , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
-        -- XMOBAR SETTINGS
+    , logHook = dynamicLogWithPP $  filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
         { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
                        -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
                        -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
