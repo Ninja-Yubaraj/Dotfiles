@@ -272,12 +272,13 @@ alias egrep='egrep --color=auto'                  # show differences in color
 alias fgrep='fgrep --color=auto'                  # show differences in color
 
 # confirm before overwriting something
-alias cp="cp -iv"                                  # confirm before overwriting
-alias mv='mv -iv'                                  # confirm before overwriting
-alias rm='rm -iv'                                  # confirm before deleting
+alias cp="cp -iv"                                 # confirm before overwriting
+alias mv='mv -iv'                                 # confirm before overwriting
+alias rm='rm -iv'                                 # confirm before deleting
 
 # trash things instead of deleting them
-#alias rmtrash='rm -rf ~/.local/share/Trash/*'    # remove all files in trash
+#alias rmtrash='rm -rf ~/.local/share/Trash/*'                                                               # remove all files in trash
+#alias burnallevidence='shred -uzvn3 ~/.local/share/Trash/*'                                                 # shred all evidence
 
 # shred (uncomment only one of them)
 #alias shred='shred -u -n 3'                      # securely erase files
@@ -297,14 +298,14 @@ alias pscpu='ps auxf | sort -nr -k 3'                      # show all processes 
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'         # show top 10 processes eating cpu
 
 # History
-alias clearbashhistory='cat /dev/null > ~/.bash_history && history -c && exit'                                # clearbashhistory: Clear bash history
-alias clearzshhistory='cat /dev/null > ~/.zsh_history && history -c && exit'                                  # clearzshhistory: Clear zsh history
-alias clearhistory='clearbashhistory && clearzshhistory'                                                      # clearhistory:   Clear both bash and zsh history
-alias historysize='history | wc -l'                                                                           # historysize:    Show the number of history entries
-alias historysearch='history | grep -i'                                                                       # historysearch:  Search the history
-alias historysearchclear='history | grep -i | xargs -I {} history -s {}'                                      # historysearchclear: Search and clear the history
-alias historysearchclearall='history | grep -i | xargs -I {} history -c {}'                                   # historysearchclearall: Search and clear the history
-alias historysearchclearallbut='history | grep -i | xargs -I {} history -c {} | xargs -I {} history -s {}'    # historysearchclearallbut: Search and clear the history
+alias clearbashhistory='cat /dev/null > ~/.bash_history && history -c && exit'                               # clearbashhistory: Clear bash history
+alias clearzshhistory='cat /dev/null > ~/.zsh_history && history -c && exit'                                 # clearzshhistory: Clear zsh history
+alias clearhistory='clearbashhistory && clearzshhistory'                                                     # clearhistory:   Clear both bash and zsh history
+alias historysize='history | wc -l'                                                                          # historysize:    Show the number of history entries
+alias historysearch='history | grep -i'                                                                      # historysearch:  Search the history
+alias historysearchclear='history | grep -i | xargs -I {} history -s {}'                                     # historysearchclear: Search and clear the history
+alias historysearchclearall='history | grep -i | xargs -I {} history -c {}'                                  # historysearchclearall: Search and clear the history
+alias historysearchclearallbut='history | grep -i | xargs -I {} history -c {} | xargs -I {} history -s {}'   # historysearchclearallbut: Search and clear the history
 
 # Networking
 alias netCons='lsof -i'                                                             # netCons:      Show all open TCP/IP sockets
