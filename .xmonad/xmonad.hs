@@ -140,12 +140,11 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 myStartupHook :: X ()
 myStartupHook = do
     --spawnOnce (mySoundPlayer ++ startupSound)                                                        -- Startup Sound
-    --spawn "killall conky"                                                                            -- kill current conky on each restart
-    --spawn "killall trayer"                                                                           -- kill current trayer on each restart
+    spawn "killall conky"                                                                              -- kill current conky on each restart
+    spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
     --spawnOnce "lxsession"                                                                            -- start lxsession
-    --spawnOnce "picom"                                                                                -- start picom
-    --spawnOnce "picom --experimental-backends -b"                                                     -- start picom (experimental)
+    spawnOnce "picom --experimental-backends -b"                                                       -- start picom
     --spawnOnce "nm-applet"                                                                            -- start network manager applet
     --spawnOnce "volumeicon"                                                                           -- start volumeicon
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
@@ -156,7 +155,7 @@ myStartupHook = do
     --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"                                             -- feh set random wallpaper
     --spawnOnce "nitrogen --restore &"                                                                 -- if you prefer nitrogen to feh
     --spawnOnce "wal -R"                                                                               -- set wal colorscheme
-    --setWMName "LG3D"                                                                                 -- set window manager to LG3D
+    setWMName "LG3D"                                                                                   -- set window manager to LG3D
 
   -- Gridselect --
 
