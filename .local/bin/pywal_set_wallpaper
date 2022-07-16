@@ -7,4 +7,5 @@ wal -q -i "$1"
 # Import the colors
 . "$HOME/.cache/wal/colors.sh"
 
+# Set background for betterlockscreen
 betterlockscreen -u $wallpaper
