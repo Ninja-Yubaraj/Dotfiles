@@ -2,7 +2,7 @@
 #
 # Script name: dm-run
 # Description: The standard dmenu_run command with flags and a prompt.
-# Dependencies: dmenu
+# Dependencies: dmenu (DT)
 # GitLab: https://www.gitlab.com/dwt1/dmscripts
 # License: https://www.gitlab.com/dwt1/dmscripts/LICENSE
 # Contributors: Derek Taylor

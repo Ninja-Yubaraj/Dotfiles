@@ -2,7 +2,7 @@
 #
 # Script name: dm-pywal-run
 # Description: The standard dmenu_run command with pywal colors, flags and a prompt.
-# Dependencies: dmenu, pywal
+# Dependencies: dmenu (DT), pywal
 # GitLab: https://www.github.com/Ninja-Yubaraj/dmscripts
 # Contributors: Yubaraj Sarkar, Derek Taylor
 
