@@ -405,6 +405,7 @@ alias tbind='mkdir -p ~/Documents/termbin/; cd ~/Documents/termbin/; wget $(xpas
 # transfer.sh
 # usage: tsh .bashrc
 alias tsh='transfer'                                                                # tsh:          Transfer files to transfer.sh
+alias tshq='transfer $1 | qrc'                                                      # tshq:         Transfer files to transfer.sh and generate a qr code
 
 # qrenco.de
 # usage: cat .bashrc | qrc
@@ -454,5 +455,5 @@ alias wcc='wc -c'                                                               
 #alias vim='nvim'
 alias df='df -h'                                                                    # human-readable sizes
 alias free='free -m'                                                                # show sizes in MB
-#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                   # ncmpcpp:      ncmpcpp
-#alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'       # mocp:         mocp
+#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                    # ncmpcpp:      ncmpcpp
+#alias mocp='mocp -M $HOME/.config/moc/'                                             # mocp:         mocp

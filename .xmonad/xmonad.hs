@@ -152,7 +152,7 @@ myStartupHook = do
     --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
     --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
     --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
-    --spawnOnce "feh --randomize --bg-fill ~/wallpapers/*"                                             -- feh set random wallpaper
+    --spawnOnce "feh --randomize --bg-fill /usr/share/wallpapers/*"                                             -- feh set random wallpaper
     --spawnOnce "nitrogen --restore &"                                                                 -- if you prefer nitrogen to feh
     --spawnOnce "wal -R"                                                                               -- set wal colorscheme
     setWMName "LG3D"                                                                                   -- set window manager to LG3D
@@ -533,8 +533,8 @@ myKeys c =
   , ("M-S-c", addName "Kill focused window"    $ kill1)
   , ("M-S-a", addName "Kill all windows on WS" $ killAll)
   --, ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "dmenu_run"])
-  --, ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "$HOME/.local/bin/dmenu/dmenu_run"])
   --, ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "$HOME/.local/bin/pywal_dmenu_run"])
+  --, ("M-S-<Return>", addName "Run prompt"      $ sequence_ [spawn (mySoundPlayer ++ dmenuSound), spawn "rofi -show run"])
   ]
 
   ^++^ subKeys "Switch to workspace"

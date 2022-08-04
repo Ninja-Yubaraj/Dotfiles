@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 #
-# Script name: dmenu_run
-# Description: Customize the standard dmenu_run command with flags, prompt and even with pywal colors.
+# Script name: applauncher
+# Description: A simple Application Launcher with dmenu, rofi.
 # Warning: Uncomment any one of them only!
-# Dependencies: dmenu, pywal
+# Dependencies: dmenu, rofi, pywal
 # Github: https://github.com/Ninja-Yubaraj/Dotfiles
 # License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
 # Contributors: Yubaraj Sarkar
 
 # Uncomment for the standard dmenu_run (Default, comment this if not using.)
-dmenu_run
+#dmenu_run
 
 # Uncomment for the standard dmenu_run with a prompt
 #dmenu_run -i -p "Run: "
@@ -17,3 +17,6 @@ dmenu_run
 # Uncomment for the standard dmenu_run with a prompt and pywal colors
 #. "$HOME/.cache/wal/colors.sh"
 #dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15" -i -p "Run: "
+
+# Uncomment for the rofi drun (Default, comment this if not using.)
+rofi -show drun

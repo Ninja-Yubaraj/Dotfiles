@@ -9,3 +9,12 @@ chmod +x $HOME/.local/bin/experimental/*
 chmod +x $HOME/.xmonad/xmonad_keys.sh
 chmod +x $HOME/.xmonad/pacman-hooks/symlink.sh
 chmod +x $HOME/.config/xmobar/trayer-padding-icon.sh
+chmod +x $HOME/.local/bin/clipit
+chmod +x $HOME/.local/bin/cpcolor
+chmod +x $HOME/.local/bin/genzathurarc
+chmod +x $HOME/.local/bin/pywal_dmenu_run
+chmod +x $HOME/.local/bin/pywal_set_wallpaper
+chmod +x $HOME/.local/bin/saveclip
+chmod +x $HOME/.local/bin/unix
+chmod +x $HOME/.local/bin/wl
+chmod +x $HOME/.local/bin/zathura
