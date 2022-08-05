@@ -392,7 +392,6 @@ alias tbind='mkdir -p ~/Documents/termbin/; cd ~/Documents/termbin/; wget $(xpas
 # transfer.sh
 # usage: tsh .bashrc
 alias tsh='transfer'                                                                # tsh:          Transfer files to transfer.sh
-alias tshq='transfer $1 | qrc'                                                      # tshq:         Transfer files to transfer.sh and generate a qr code
 
 # qrenco.de
 # usage: cat .bashrc | qrc
