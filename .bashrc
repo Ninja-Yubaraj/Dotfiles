@@ -259,9 +259,14 @@ alias egrep='egrep --color=auto'                  # show differences in color
 alias fgrep='fgrep --color=auto'                  # show differences in color
 
 # confirm before overwriting something
-alias cp="cp -iv"                                 # confirm before overwriting
-alias mv='mv -iv'                                 # confirm before overwriting
-alias rm='rm -iv'                                 # confirm before deleting
+#alias cp="cp -iv"                                 # confirm before overwriting
+#alias mv='mv -iv'                                 # confirm before overwriting
+#alias rm='rm -iv'                                 # confirm before deleting
+
+# Verbosify commands
+alias cp="cp -v"                                  # verbose copy
+alias mv='mv -v'                                  # verbose move
+alias rm='rm -v'                                  # verbose delete
 
 # trash things instead of deleting them
 #alias rmtrash='rm -rf ~/.local/share/Trash/*'                                                               # remove all files in trash
@@ -327,21 +332,21 @@ alias jctl="journalctl -p 3 -xb"                                                
 
 # gpg encryption
 # verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"               # gpg-check:    Verify a signature
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"                              # gpg-check:    Verify a signature
 # receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"      # gpg-retrieve: Retrieve a key
+alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"                     # gpg-retrieve: Retrieve a key
 
 # Play Lofi [local files only]
-#alias lofi.play='mpv --no-video --shuffle --loop-playlist ~/Music/Lofi/* &'           # lofi.play:    Play Lofi
-#alias lofi.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'               # lofi.stop:    Stop Lofi
+#alias lofi.play='mpv --no-video --shuffle --loop-playlist ~/Music/Lofi/* &'                       # lofi.play:    Play Lofi
+#alias lofi.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'                           # lofi.stop:    Stop Lofi
 
 # Play Nightcore [local files only]
-#alias nightcore.play='mpv --no-video --shuffle --loop-playlist ~/Music/Nightcore/* &' # nightcore.play: Play Nightcore
-#alias nightcore.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'          # nightcore.stop: Stop Nightcore
+#alias nightcore.play='mpv --no-video --shuffle --loop-playlist ~/Music/Nightcore/* &'             # nightcore.play: Play Nightcore
+#alias nightcore.stop='pkill -f "mpv --no-video --shuffle --loop-playlist /"'                      # nightcore.stop: Stop Nightcore
 
 # Play Lofi Radio [online]
-#alias lofiradio.lofigirl='mpv --no-video "https://www.youtube.com/watch?v=jfKfPfyJRdk" &'  # lofiradio.lofigirl: Play Lofi [Lofi Girl]
-#alias lofiradio.stop='pkill -f "mpv --no-video http"'                                      # lofiradio.stop: Stop Lofi
+#alias lofiradio.lofigirl='mpv --no-video "https://www.youtube.com/watch?v=jfKfPfyJRdk" &'         # lofiradio.lofigirl: Play Lofi [Lofi Girl]
+#alias lofiradio.stop='pkill -f "mpv --no-video http"'                                             # lofiradio.stop: Stop Lofi
 
 # Play audio files in current dir by type
 #alias playwav='mpv --no-video *.wav'                                               # playwav:      Play wav files
@@ -365,15 +370,15 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  
 #alias ytv-best="youtube-dl -f bestvideo+bestaudio "                                # ytv-best:     Download video in best format
 
 # yt-dlp
-#alias yta-aac="yt-dlp --extract-audio --audio-format aac "                        # yta-aac:      Download audio in aac format
-#alias yta-best="yt-dlp --extract-audio --audio-format best "                      # yta-best:     Download audio in best format
-#alias yta-flac="yt-dlp --extract-audio --audio-format flac "                      # yta-flac:     Download audio in flac format
-#alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "                        # yta-m4a:      Download audio in m4a format
-#alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "                        # yta-mp3:      Download audio in mp3 format
-#alias yta-opus="yt-dlp --extract-audio --audio-format opus "                      # yta-opus:     Download audio in opus format
-#alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "                  # yta-vorbis:   Download audio in vorbis format
-#alias yta-wav="yt-dlp --extract-audio --audio-format wav "                        # yta-wav:      Download audio in wav format
-#alias ytv-best="yt-dlp -f bestvideo+bestaudio "                                   # ytv-best:     Download video in best format
+#alias yta-aac="yt-dlp --extract-audio --audio-format aac "                         # yta-aac:      Download audio in aac format
+#alias yta-best="yt-dlp --extract-audio --audio-format best "                       # yta-best:     Download audio in best format
+#alias yta-flac="yt-dlp --extract-audio --audio-format flac "                       # yta-flac:     Download audio in flac format
+#alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "                         # yta-m4a:      Download audio in m4a format
+#alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "                         # yta-mp3:      Download audio in mp3 format
+#alias yta-opus="yt-dlp --extract-audio --audio-format opus "                       # yta-opus:     Download audio in opus format
+#alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "                   # yta-vorbis:   Download audio in vorbis format
+#alias yta-wav="yt-dlp --extract-audio --audio-format wav "                         # yta-wav:      Download audio in wav format
+#alias ytv-best="yt-dlp -f bestvideo+bestaudio "                                    # ytv-best:     Download video in best format
 
 # xclip
 alias xcopy="xclip -selection clipboard"                                            # xcopy:        Copy to clipboard
@@ -444,5 +449,5 @@ alias wcc='wc -c'                                                               
 #alias vim='nvim'
 alias df='df -h'                                                                    # human-readable sizes
 alias free='free -m'                                                                # show sizes in MB
-#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                    # ncmpcpp:      ncmpcpp
-#alias mocp='mocp -M $HOME/.config/moc/'                                             # mocp:         mocp
+#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                   # ncmpcpp:      ncmpcpp
+#alias mocp='mocp -M $HOME/.config/moc/'                                            # mocp:         mocp

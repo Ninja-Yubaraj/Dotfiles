@@ -12,6 +12,7 @@ chmod +x $HOME/.config/xmobar/trayer-padding-icon.sh
 chmod +x $HOME/.local/bin/clipit
 chmod +x $HOME/.local/bin/cpcolor
 chmod +x $HOME/.local/bin/genzathurarc
+chmod +x $HOME/.local/bin/lockscreen
 chmod +x $HOME/.local/bin/pywal_dmenu_run
 chmod +x $HOME/.local/bin/pywal_set_wallpaper
 chmod +x $HOME/.local/bin/saveclip

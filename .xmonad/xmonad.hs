@@ -149,10 +149,10 @@ myStartupHook = do
     --spawnOnce "volumeicon"                                                                           -- start volumeicon
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
     --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")        -- start conky
-    --spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
+    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
     --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
     --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
-    --spawnOnce "feh --randomize --bg-fill /usr/share/wallpapers/*"                                             -- feh set random wallpaper
+    --spawnOnce "feh --randomize --bg-fill /usr/share/wallpapers/*"                                    -- feh set random wallpaper
     --spawnOnce "nitrogen --restore &"                                                                 -- if you prefer nitrogen to feh
     --spawnOnce "wal -R"                                                                               -- set wal colorscheme
     setWMName "LG3D"                                                                                   -- set window manager to LG3D
@@ -721,7 +721,7 @@ main = do
 
   --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobarrc")
   --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/pywal-xmobarrc")
-  --xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
+  xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
   --xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
   --xmproc2 <- spawnPipe ("xmobar -x 2 $HOME/.config/xmobar/" ++ colorScheme ++ "-xmobarrc")
 
@@ -744,7 +744,7 @@ main = do
     , normalBorderColor  = myNormColor
     , focusedBorderColor = myFocusColor
     , logHook = dynamicLogWithPP $  filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
-        { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
+        { ppOutput = \x -> hPutStrLn xmproc0 x     -- xmobar on monitor 1
                        -- >> hPutStrLn xmproc1 x   -- xmobar on monitor 2
                        -- >> hPutStrLn xmproc2 x   -- xmobar on monitor 3
           -- Current workspace
