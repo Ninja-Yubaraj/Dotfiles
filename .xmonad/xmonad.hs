@@ -144,11 +144,12 @@ myStartupHook = do
     spawn "killall trayer"                                                                             -- kill current trayer on each restart
 
     --spawnOnce "lxsession"                                                                            -- start lxsession
+    --spawnOnce "dunst"                                                                                -- start dunst
     spawnOnce "picom --experimental-backends -b"                                                       -- start picom
     --spawnOnce "nm-applet"                                                                            -- start network manager applet
     --spawnOnce "volumeicon"                                                                           -- start volumeicon
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
-    --spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")        -- start conky
+    --spawn ("sleep 2 && conky")                                                                       -- start conky
     spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
     --spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"                                           -- start wallpaper
     --spawnOnce "~/.fehbg &"                                                                           -- set last saved feh wallpaper
