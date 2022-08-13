@@ -2,10 +2,15 @@
 #
 # Dependencies: pywal, betterlockscreen
 
+# Setting up Wallpaper
 wal -q -i "$1"
 
-# Import the colors
+# Importing the colors
 . "$HOME/.cache/wal/colors.sh"
 
-# Set background for betterlockscreen
+# Setting the background for betterlockscreen
 betterlockscreen -u $wallpaper
+
+# Setting the background for Rofi
+rm $HOME/.config/rofi/rofi-bg.jpg
+ln -s $wallpaper $HOME/.config/rofi/rofi-bg.jpg

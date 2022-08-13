@@ -33,13 +33,8 @@ configuration {
 
 @theme"/dev/null"
 
-* {
-  bg: #1f222d;
-  fg: #81a1c1;
-  button: #81a1c1;
-  background-color: @bg;
-  text-color: @fg;
-}
+/* Importing colors-rofi-dark */
+@import "~/.cache/wal/colors-rofi-dark"
 
 element-text,
 element-icon,
@@ -53,15 +48,15 @@ window {
   width: 60%;
   border: 10px;
   border-radius: 15px;
-  border-color: #1f222d;
+  border-color: @foreground;
   height: 70%;
 }
 
 prompt {
   enabled: true;
-  background-color: @bg;
+  background-color: @background;
   padding: 20px 15px 5px 15px;
-  text-color: @fg;
+  text-color: @foreground;
   border-radius: 50%;
   expand: true;
   font: "Iosevka Nerd Font 14";
@@ -78,8 +73,8 @@ textbox-prompt-colon {
 
 entry {
   placeholder: "Search";
-  placeholder-color: #81a1c1;
-  text-color: #81a1c1;
+  placeholder-color: @foreground;
+  text-color: @foreground;
   expand: true;
   padding: 2.0%;
   border-radius: 50%;
@@ -115,7 +110,7 @@ element {
   font: "Dosis 14";
   margin: 5px 5px 5px 5px;
   border-radius: 10px;
-  background-color: #3b4252;
+  background-color: @background;
 }
 
 element-text {
@@ -144,8 +139,8 @@ button {
   padding: 15px;
   margin: 0;
   font: "Dosis,Iosevka Nerd Font 14";
-  background-color: #88C0D0;
-  text-color: #3b4252;
+  background-color: @foreground;
+  text-color: @background;
   vertical-align: 0.5;
   horizontal-align: 0.5;
 }
@@ -153,8 +148,8 @@ button {
 button selected {
   padding: 15px;
   margin: 0;
-  background-color: #3b4252;
-  text-color: #81a1c1;
+  background-color: @background;
+  text-color: @foreground;
 
   // border: 0 0 5px 0;
   // border-color: #88C0D0;
