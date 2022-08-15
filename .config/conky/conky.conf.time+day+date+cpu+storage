@@ -53,7 +53,7 @@ ${time %H:%M}\
 ${voffset -80}
 ${font Product Sans:weight=Bold:size=40}${color0}\
 ${time %A}
-${voffset -60}
+${voffset -80}
 ${font Product Sans:weight=Bold:size=40}${color0}\
 ${time %d %B, %Y}\
 ${voffset -25}
