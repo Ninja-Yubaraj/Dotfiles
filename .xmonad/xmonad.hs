@@ -95,8 +95,7 @@ import Colors.DoomOne
   -- Variables --
 
 myFont :: String
---myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
-myFont = "xft:Mononoki Nerd Font:regular:size=9:antialias=true:hinting=true"
+myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
 
 myModMask :: KeyMask
 --myModMask = mod1Mask                      -- Sets modkey to ALT key (Default)
