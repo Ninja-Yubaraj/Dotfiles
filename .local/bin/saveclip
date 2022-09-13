@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
+#
+# Script name: saveclip
+# Version: 1.0
+# Description: A script to save the temporary clipboard file to a permanent location.
+# Dependencies: mkdir, cat
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License:
+# Contributors: Yubaraj Sarkar
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
 
 mkdir -p ~/Documents
 cat /tmp/clipboard.txt >> ~/Documents/savedclips.txt

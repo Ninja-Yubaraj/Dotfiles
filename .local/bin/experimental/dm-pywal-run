@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 #
 # Script name: dm-pywal-run
+# Version: 1.0
 # Description: The standard dmenu_run command with pywal colors, flags and a prompt.
 # Dependencies: dmenu (DT), pywal
-# GitLab: https://www.github.com/Ninja-Yubaraj/dmscripts
+# Github: https://github.com/Ninja-Yubaraj/dmscripts
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/dmscripts
+# License:
 # Contributors: Yubaraj Sarkar, Derek Taylor
 
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail

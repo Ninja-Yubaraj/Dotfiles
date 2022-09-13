@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 #
 # Script name: wl
-# Description: Set system wallpaper
-# Dependencies: pywal_set_wallpaper (bin script), sxiv
-# Github: https://www.github.com/Ninja-Yubaraj/Dotfiles
-# License: https://www.github.com/Ninja-Yubaraj/Dotfiles/LICENSE
+# Version: 1.0
+# Description: A simple and minimal script to set the wallpaper using pywal with sxiv.
+# Dependencies:  sxiv, pywal_set_wallpaper (bin script)
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License:
 # Contributors: Yubaraj Sarkar
 
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail

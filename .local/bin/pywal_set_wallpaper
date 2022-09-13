@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 #
+# Script name: pywal_set_wallpaper
+# Version: 1.0
+# Description: A script to set the wallpaper using pywal and export the colorscheme system wide.
 # Dependencies: pywal, betterlockscreen
+# Github: https://github.com/Ninja-Yubaraj/Dotfiles
+# Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
+# License:
+# Contributors: Yubaraj Sarkar
+
+# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
+# if certain things happen, which is a good thing.  Otherwise, we can
+# get hidden bugs that are hard to discover.
+set -euo pipefail
 
 # Setting up Wallpaper
 wal -q -i "$1"
@@ -9,8 +21,8 @@ wal -q -i "$1"
 . "$HOME/.cache/wal/colors.sh"
 
 # Setting the background for betterlockscreen
-betterlockscreen -u $wallpaper
+betterlockscreen -u "$wallpaper"
 
 # Setting the background for Rofi
-rm $HOME/.config/rofi/rofi-bg.jpg
-ln -s $wallpaper $HOME/.config/rofi/rofi-bg.jpg
+rm "$HOME/.config/rofi/rofi-bg.jpg"
+ln -s "$wallpaper" "$HOME/.config/rofi/rofi-bg.jpg"
