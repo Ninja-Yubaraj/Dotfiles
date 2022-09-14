@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# Script name: pywal_set_wallpaper
+# Script name: aftercolorz
 # Version: 1.0
-# Description: A script to set the wallpaper using pywal and export the colorscheme system wide.
+# Description: A post processing script for ricing other applications for pywal.
 # Dependencies: pywal, betterlockscreen, ln
 # Github: https://github.com/Ninja-Yubaraj/Dotfiles
 # Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
@@ -13,9 +13,6 @@
 # if certain things happen, which is a good thing.  Otherwise, we can
 # get hidden bugs that are hard to discover.
 set -euo pipefail
-
-# Setting up Wallpaper
-wal -q -i "$1"
 
 # Importing the colors
 . "$HOME/.cache/wal/colors.sh"

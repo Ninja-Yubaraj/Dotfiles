@@ -435,6 +435,7 @@ alias anidw='ani-cli -d -q "worst"'                                             
 # pywal
 # Get this script from Github: https://github.com/dylanaraps/pywal
 #alias wal='wal -q -i'                                                              # wal:          Set wallpaper and color scheme with pywal
+#alias wal='wal -q -i "$1" -o "$HOME/.local/bin/experimental/aftercolorz"'              # wal:          Set wallpaper and color scheme with pywal
 
 # wttr.in
 # Github: https://github.com/chubin/wttr.in
