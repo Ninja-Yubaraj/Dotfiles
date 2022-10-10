@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: quickshot
+# Script name: quickshot (maim)
 # Version: 1.0.0
 # Description: A simple script to take screenshots with time stamps.
 # Dependencies: maim, xclip, date, mkdir

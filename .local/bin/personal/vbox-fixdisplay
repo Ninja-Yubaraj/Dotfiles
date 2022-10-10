@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: vbox_fixdisplay
+# Script name: vbox-fixdisplay
 # Version: 1.0
 # Description: A script to fix the display resolution issue in VirtualBox.
 # Dependencies: xrandr

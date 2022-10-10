@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: auto_executable_permissions
+# Script name: auto-executable-permissions
 # Version: 1.0
 # Description: A script to set executable permissions to all the necessary scripts.
 # Dependencies: chmod
@@ -29,6 +29,7 @@ chmod +x $HOME/.local/bin/genzathurarc
 chmod +x $HOME/.local/bin/lockscreen
 chmod +x $HOME/.local/bin/pywal_dmenu_run
 chmod +x $HOME/.local/bin/pywal_set_wallpaper
+chmod +x $HOME/.local/bin/quickshot
 chmod +x $HOME/.local/bin/saveclip
 chmod +x $HOME/.local/bin/unix
 chmod +x $HOME/.local/bin/wl

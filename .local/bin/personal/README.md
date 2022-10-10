@@ -1,4 +1,4 @@
-## Personal binaries*
+## Personal Binaries*
 Nothing much to see here, just some small scripts to automate some boring stuff OR setup some file permissions on the go.
 
 These things might break on you, afterall these are all made for very specific cases. Even after that, these are good for taking some inspirations.

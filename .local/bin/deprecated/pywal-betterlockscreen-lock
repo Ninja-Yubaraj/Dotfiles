@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: betterlockscreen_pywal_lock
+# Script name: pywal-betterlockscreen-lock
 # Version: 1.0
 # Description: A standard script to lock screen session using betterlockscreen with pywal colors.
 # Dependencies: betterlockscreen, pywal

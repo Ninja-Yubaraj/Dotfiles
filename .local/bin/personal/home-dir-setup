@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: home_dir_setup
+# Script name: home-dir-setup
 # Version: 1.0
 # Description: A script to setup the necessary directories in the home directory.
 # Dependencies: mkdir

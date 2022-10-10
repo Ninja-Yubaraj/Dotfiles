@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Script name: quickshot
+# Script name: quickshot (scrot)
 # Version: 1.0.0
 # Description: A script to take a screenshot with time stamps.
 # Dependencies: scrot, date, mkdir
