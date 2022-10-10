@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # Script name:
-# Version: 1.0
+# Version: 1.0.0
 # Description:
 # Dependencies:
 # Github: https://github.com/Ninja-Yubaraj/
@@ -14,4 +14,4 @@
 # get hidden bugs that are hard to discover.
 set -euo pipefail
 
-echo "This is a template"
+echo "This is a shell script template"
