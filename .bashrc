@@ -355,16 +355,6 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  
 #alias lofiradio.lofigirl='mpv --no-video "https://www.youtube.com/watch?v=jfKfPfyJRdk" &'         # lofiradio.lofigirl: Play Lofi [Lofi Girl]
 #alias lofiradio.stop='pkill -f "mpv --no-video http"'                                             # lofiradio.stop: Stop Lofi
 
-# Play audio files in current dir by type
-#alias playwav='mpv --no-video *.wav'                                               # playwav:      Play wav files
-#alias playogg='mpv --no-video *.ogg'                                               # playogg:      Play ogg files
-#alias playmp3='mpv --no-video *.mp3'                                               # playmp3:      Play mp3 files
-
-# Play video files in current dir by type
-#alias playavi='mpv *.avi'                                                          # playavi:      Play avi files
-#alias playmov='mpv *.avi'                                                          # playmov:      Play avi files
-#alias playmp4='mpv *.mp4'                                                          # playmp4:      Play mp4 files
-
 # youtube-dl
 #alias yta-aac="youtube-dl --extract-audio --audio-format aac "                     # yta-aac:      Download audio in aac format
 #alias yta-best="youtube-dl --extract-audio --audio-format best "                   # yta-best:     Download audio in best format
@@ -395,15 +385,12 @@ alias xpaste="xclip -selection clipboard -o"                                    
 # usage: cat .bashrc | tbin 
 alias tbin="nc termbin.com 9999"                                                                                                               # tbin:         Pipe to termbin.com and show the link
 alias tbinc='nc termbin.com 9999 | xcopy ; echo "Link copied to the clipboard!!!"'                                                             # tbinc:        Pipe to termbin.com and copy the link to xclipboard
-alias tbinq='nc termbin.com 9999 | qrc'                                                                                                        # tbinq:        Pipe to termbin.com and generate a qr code
-alias tbinp='curl $(xpaste)'                                                                                                                   # tbinp:        Paste from xclipboard and show the contents
-alias tbinpl='curl $(xpaste) | less'                                                                                                           # tbinpl:       Paste from xclipboard and show the contents in less (glitchy)
-alias tbinpb='curl $(xpaste) | bat'                                                                                                            # tbinpb:       Paste from xclipboard and show the contents in bat (recommended)
-alias tbind='mkdir -p ~/Documents/termbin/; cd ~/Documents/termbin/; wget $(xpaste); cd -; echo "File downloaded to ~/Documents/termbin/"'     # tbind:        Paste from xclipboard and download the file to ~/termbin/
+alias tbinqr='nc termbin.com 9999 | qrc'                                                                                                       # tbinqr:       Pipe to termbin.com and generate a qr code
+alias tbinp='curl $(xpaste) | less'                                                                                                            # tbinp:        Paste from clipboard and pipe to less
+alias tbind='wget -qO- $(xpaste); echo "File Downloaded"'                                                                                      # tbind:        Download from termbin.com
 
 # transfer.sh
-# usage: tsh .bashrc
-alias tsh='transfer'                                                                # tsh:          Transfer files to transfer.sh
+alias transferqr='transfer $1 | qrc'                                                                                                           # transferqr:   Generate a qr code for transfer.sh
 
 # qrenco.de
 # usage: cat .bashrc | qrc
@@ -422,7 +409,7 @@ alias anidw='ani-cli -d -q "worst"'                                             
 # pywal
 # Get this script from Github: https://github.com/dylanaraps/pywal
 #alias wal='wal -q -i'                                                              # wal:          Set wallpaper and color scheme with pywal
-#alias wal='wal -q -i "$1" -o "$HOME/.local/bin/experimental/aftercolorz"'              # wal:          Set wallpaper and color scheme with pywal
+#alias wal='wal -q -i "$1" -o "$HOME/.local/bin/experimental/aftercolorz"'          # wal:          Set wallpaper and color scheme with pywal
 
 # lockscreen
 #alias lk='$HOME/.local/bin/lockscreen'                                             # lk:           Lock screen
