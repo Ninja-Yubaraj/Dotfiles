@@ -8,6 +8,10 @@
 # Gitlab: https://gitlab.com/Ninja-Yubaraj/Dotfiles
 # License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
 # Contributors: Yubaraj Sarkar
+# Code Status: Deprecated
+# Reason: 1. Don't check if the parameters are empty.
+#         2. Can't set default parameters.
+#         3. Can't convert multiple files at once in a directory.
 
 # Set with the flags "-e", "-u","-o pipefail" cause the script to fail
 # if certain things happen, which is a good thing.  Otherwise, we can
