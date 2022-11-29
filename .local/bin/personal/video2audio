@@ -47,4 +47,6 @@ elif [ -f "$1" ]; then
 fi
 
 # Notify
-notify-send "video2audio" "Finished Converting File(s)." -i check-solid
+if command -v notify-send &>/dev/null; then
+    notify-send "video2audio" "Finished Converting File(s)." -i check-solid
+fi
