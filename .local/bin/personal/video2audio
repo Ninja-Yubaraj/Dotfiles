@@ -9,29 +9,16 @@
 # License: https://github.com/Ninja-Yubaraj/Dotfiles/LICENSE
 # Contributors: Yubaraj Sarkar
 
-# Set with the flags "-e", "-u","-o pipefail" cause the script to fail
-# if certain things happen, which is a good thing.  Otherwise, we can
-# get hidden bugs that are hard to discover.
-set -euo pipefail
-
-# Check if ffmpeg is installed.
-if ! command -v ffmpeg &>/dev/null; then
-    echo "ffmpeg could not be found"
-    exit
+# Check if $1 is empty, if it is then exit the script.
+if [ -z "$1" ]; then
+    echo "No file or directory specified."
+    exit 1
 fi
 
-# Check if $1 is empty. If empty, then pass the current directory.
-if [[ -z "${1:-}" ]]; then
-    dir="."
-else
-    dir="$1"
-fi
-
-# Check if $2 is empty. If empty, then pass "mp3" as default.
-if [[ -z "${2:-}" ]]; then
-    ext="mp3"
-else
-    ext="$2"
+# Check if $2 is empty, if it is then exit the script.
+if [ -z "$2" ]; then
+    echo "No output format specified."
+    exit 1
 fi
 
 # Check if the parameter is a file or directory and if it is a directory then,

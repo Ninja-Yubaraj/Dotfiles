@@ -22,5 +22,5 @@ LOCAL_DIR2="$HOME/.local/share/backgrounds"
 WALLPAPER="$($SXIV $GLOBAL_DIR1 $GLOBAL_DIR2 $LOCAL_DIR1 $LOCAL_DIR2)"
 
 #echo $WALLPAPER
-#wal -q -i "$WALLPAPER" -o "$HOME/.local/bin/experimental/aftercolorz"
+#wal -q -i "$WALLPAPER" -o "$HOME/.local/bin/aftercolorz"
 $HOME/.local/bin/pywal_set_wallpaper $WALLPAPER

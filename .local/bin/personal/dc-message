@@ -11,7 +11,7 @@
 
 # Check if $1 is empty then exit
 if [ -z "$1" ]; then
-    echo "Usage: dc-message <message> <channel_id>"
+    echo "Usage: $0 <message> <channel_id>"
     exit 1
 fi
 

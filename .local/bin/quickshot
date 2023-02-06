@@ -14,20 +14,6 @@
 # get hidden bugs that are hard to discover.
 set -euo pipefail
 
-# Check if maim is installed
-if ! command -v maim &> /dev/null
-then
-    echo "maim could not be found"
-    exit
-fi
-
-# Check if xclip is installed
-if ! command -v xclip &> /dev/null
-then
-    echo "xclip could not be found"
-    exit
-fi
-
 # Check if $path exists
 path="$HOME/Pictures/Screenshots/$(date +'%Y-%m')"
 if [ ! -d "$path" ]; then
@@ -42,4 +28,4 @@ name="screenshot-$(date +'%Y-%m-%d-%H%M%S').png"
 maim --select --capturebackground | tee $path/$name | xclip -selection clipboard -t image/png
 
 # Notify
-notify-send "Screenshot Captured" "File: $path/$name" -i iamge-solid
+notify-send "Screenshot Captured" "File: $path/$name" -i image-solid
