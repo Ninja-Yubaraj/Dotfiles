@@ -1,6 +1,6 @@
 return function(use)
 
--- Which Key
+-- Some Nice Plugins --
  -- use({
  --   "folke/which-key.nvim",
  --     config = function()
@@ -12,12 +12,10 @@ return function(use)
   -- use { 'AlphaTechnolog/pywal.nvim', as = 'pywal' }
   use { "catppuccin/nvim", as = "catppuccin" }
 
--- Discord Presence
+-- Discord --
   -- use { 'andweeb/presence.nvim' }
 
 -- Markdown and Pandoc --
---   use({
---     "iamcco/markdown-preview.nvim",
---     run = function() vim.fn["mkdp#util#install"]() end,
--- })
+--   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
 end
