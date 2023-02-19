@@ -409,7 +409,7 @@ alias anidw='ani-cli -d -q "worst"'                                             
 # pywal
 # Get this script from Github: https://github.com/dylanaraps/pywal
 #alias wal='wal -q -i'                                                              # wal:          Set wallpaper and color scheme with pywal
-#alias wal='wal -q -i "$1" -o "$HOME/.local/bin/aftercolorz"'          # wal:          Set wallpaper and color scheme with pywal
+#alias wal='wal -q -i "$1" -o "$HOME/.local/bin/aftercolorz"'                       # wal:          Set wallpaper and color scheme with pywal
 
 # lockscreen
 #alias lk='$HOME/.local/bin/lockscreen'                                             # lk:           Lock screen
@@ -439,10 +439,10 @@ alias wcw='wc -w'                                                               
 alias wcc='wc -c'                                                                   # wcc:           Count characters of code
 
 # MISC
-#alias nc='ncat'                                                                    # nc:           use nc instead of ncat.
+alias nc='ncat'                                                                     # nc:           use nc instead of ncat.
 #alias c='clear'                                                                    # c:            clear the terminal.
 #alias vim='nvim'
 alias df='df -h'                                                                    # human-readable sizes
 alias free='free -m'                                                                # show sizes in MB
-#alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                   # ncmpcpp:      ncmpcpp
-#alias mocp='mocp -M $HOME/.config/moc/'                                            # mocp:         mocp
+alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'                    # ncmpcpp:      ncmpcpp
+alias mocp='mocp -M $HOME/.config/moc/'                                             # mocp:         mocp

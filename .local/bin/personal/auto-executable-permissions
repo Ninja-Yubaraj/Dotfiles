@@ -22,6 +22,7 @@ chmod +x $HOME/.local/bin/statusbar/*
 chmod +x $HOME/.xmonad/xmonad_keys.sh
 chmod +x $HOME/.xmonad/pacman-hooks/symlink.sh
 chmod +x $HOME/.config/xmobar/trayer-padding-icon.sh
+chmod +x $HOME/.local/bin/aftercolorz
 chmod +x $HOME/.local/bin/clipit
 chmod +x $HOME/.local/bin/cpcolor
 chmod +x $HOME/.local/bin/genzathurarc
