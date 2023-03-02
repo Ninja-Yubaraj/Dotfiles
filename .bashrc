@@ -9,6 +9,7 @@
 ### EXPORT
 export TERM="xterm-256color"                 # getting proper colors
 export HISTCONTROL=ignoredups:erasedups      # no duplicate entries
+#export GPG_TTY=$(tty)                       # for gpg-agent
 #export EDITOR="vim"                         # use default editor as vim
 #export EDITOR="emacs"                       # use default editor as emacs
 #export EDITOR="nvim"                        # use default editor as nvim
@@ -161,6 +162,7 @@ transfer() {
 
 ### BASH INSULTER ###
 # Get this script from Github: https://github.com/hkbakke/bash-insulter
+# Or use my fork: https://github.com/Ninja-Yubaraj/Bash-Insulter
 #if [ -f /etc/bash.command-not-found ]; then
 #    . /etc/bash.command-not-found
 #fi
@@ -266,9 +268,9 @@ alias egrep='egrep --color=auto'                  # show differences in color
 alias fgrep='fgrep --color=auto'                  # show differences in color
 
 # confirm before overwriting something
-#alias cp="cp -iv"                                 # confirm before overwriting
-#alias mv='mv -iv'                                 # confirm before overwriting
-#alias rm='rm -iv'                                 # confirm before deleting
+#alias cp="cp -iv"                                # confirm before overwriting
+#alias mv='mv -iv'                                # confirm before overwriting
+#alias rm='rm -iv'                                # confirm before deleting
 
 # Verbosify commands
 alias cp="cp -v"                                  # verbose copy
@@ -354,17 +356,6 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  
 # Play Lofi Radio [online]
 #alias lofiradio.lofigirl='mpv --no-video "https://www.youtube.com/watch?v=jfKfPfyJRdk" &'         # lofiradio.lofigirl: Play Lofi [Lofi Girl]
 #alias lofiradio.stop='pkill -f "mpv --no-video http"'                                             # lofiradio.stop: Stop Lofi
-
-# youtube-dl
-#alias yta-aac="youtube-dl --extract-audio --audio-format aac "                     # yta-aac:      Download audio in aac format
-#alias yta-best="youtube-dl --extract-audio --audio-format best "                   # yta-best:     Download audio in best format
-#alias yta-flac="youtube-dl --extract-audio --audio-format flac "                   # yta-flac:     Download audio in flac format
-#alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "                     # yta-m4a:      Download audio in m4a format
-#alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "                     # yta-mp3:      Download audio in mp3 format
-#alias yta-opus="youtube-dl --extract-audio --audio-format opus "                   # yta-opus:     Download audio in opus format
-#alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "               # yta-vorbis:   Download audio in vorbis format
-#alias yta-wav="youtube-dl --extract-audio --audio-format wav "                     # yta-wav:      Download audio in wav format
-#alias ytv-best="youtube-dl -f bestvideo+bestaudio "                                # ytv-best:     Download video in best format
 
 # yt-dlp
 #alias yta-aac="yt-dlp --extract-audio --audio-format aac "                         # yta-aac:      Download audio in aac format

@@ -144,10 +144,10 @@ myStartupHook = do
 
     --spawnOnce "lxsession"                                                                            -- start lxsession
     --spawnOnce "dunst"                                                                                -- start dunst
-    spawnOnce "picom --experimental-backends -b"                                                       -- start picom
+    spawnOnce "picom -b"                                                                               -- start picom
     --spawnOnce "nm-applet"                                                                            -- start network manager applet
     --spawnOnce "volumeicon"                                                                           -- start volumeicon
-    --spawnOnce "mocp -M $HOME/.config/moc/ -S"                                                                              -- start music player
+    --spawnOnce "mocp -M $HOME/.config/moc/ -S"                                                        -- start music player
     --spawnOnce "/usr/bin/emacs --daemon"                                                              -- emacs daemon for the emacsclient
     --spawn ("sleep 2 && conky")                                                                       -- start conky
     spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
@@ -156,7 +156,6 @@ myStartupHook = do
     --spawnOnce "feh --randomize --bg-fill /usr/share/wallpapers/*"                                    -- feh set random wallpaper
     --spawnOnce "nitrogen --restore &"                                                                 -- if you prefer nitrogen to feh
     --spawnOnce "wal -R"                                                                               -- set wal colorscheme
-    setWMName "LG3D"                                                                                   -- set window manager to LG3D
 
   -- Gridselect --
 
