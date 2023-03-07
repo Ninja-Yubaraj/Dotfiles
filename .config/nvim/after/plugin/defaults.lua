@@ -14,8 +14,14 @@ require('lualine').setup {
 }
 
 -- Remaps --
-vim.keymap.set("n", "<leader>sv", vim.cmd.Ex, { desc = 'Search netrw' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set("n", "<leader>fj", vim.cmd.Ex, { desc = '[F]iles netrw' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = '[F]ind by [G]rep' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]ind [H]elp' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = '[F]ind current [W]ord' })
+vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = '[F]ind [D]iagnostics' })
+vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]esume' })
+vim.keymap.set('n', '<leader>fk', require('telescope.builtin').git_files, { desc = '[F]ind files in git' })
 
 -- Move whole blocks of code in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
