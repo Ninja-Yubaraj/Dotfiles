@@ -47,6 +47,16 @@ export HISTCONTROL=ignoredups:erasedups      # no duplicate entries
 # This is commented out if using any other prompts.
 PS1='[\u@\h \W]\$ '
 
+### CHANGE TITLE OF TERMINALS
+case ${TERM} in
+  kitty*|xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
+    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+        ;;
+  screen*)
+    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+    ;;
+esac
+
 ### SETTING THE STARSHIP PROMPT ###
 ## Get this from website: https://starship.rs/
 #eval "$(starship init bash)"
@@ -73,16 +83,6 @@ fi
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
-
-### CHANGE TITLE OF TERMINALS
-case ${TERM} in
-  kitty*|xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-        ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
-esac
 
 ### SHOPT
 shopt -s autocd                              # change to named directory
