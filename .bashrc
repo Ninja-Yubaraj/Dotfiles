@@ -358,15 +358,15 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"  
 #alias lofiradio.stop='pkill -f "mpv --no-video http"'                                             # lofiradio.stop: Stop Lofi
 
 # yt-dlp
-#alias yta-aac="yt-dlp --extract-audio --audio-format aac "                         # yta-aac:      Download audio in aac format
-#alias yta-best="yt-dlp --extract-audio --audio-format best "                       # yta-best:     Download audio in best format
-#alias yta-flac="yt-dlp --extract-audio --audio-format flac "                       # yta-flac:     Download audio in flac format
-#alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "                         # yta-m4a:      Download audio in m4a format
-#alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "                         # yta-mp3:      Download audio in mp3 format
-#alias yta-opus="yt-dlp --extract-audio --audio-format opus "                       # yta-opus:     Download audio in opus format
-#alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "                   # yta-vorbis:   Download audio in vorbis format
-#alias yta-wav="yt-dlp --extract-audio --audio-format wav "                         # yta-wav:      Download audio in wav format
-#alias ytv-best="yt-dlp -f bestvideo+bestaudio "                                    # ytv-best:     Download video in best format
+alias yta-aac="yt-dlp --extract-audio --audio-format aac "                          # yta-aac:      Download audio in aac format
+alias yta-best="yt-dlp --extract-audio --audio-format best "                        # yta-best:     Download audio in best format
+alias yta-flac="yt-dlp --extract-audio --audio-format flac "                        # yta-flac:     Download audio in flac format
+alias yta-m4a="yt-dlp --extract-audio --audio-format m4a "                          # yta-m4a:      Download audio in m4a format
+alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "                          # yta-mp3:      Download audio in mp3 format
+alias yta-opus="yt-dlp --extract-audio --audio-format opus "                        # yta-opus:     Download audio in opus format
+alias yta-vorbis="yt-dlp --extract-audio --audio-format vorbis "                    # yta-vorbis:   Download audio in vorbis format
+alias yta-wav="yt-dlp --extract-audio --audio-format wav "                          # yta-wav:      Download audio in wav format
+alias ytv-best="yt-dlp -f bestvideo+bestaudio "                                     # ytv-best:     Download video in best format
 
 # xclip
 alias xcopy="xclip -selection clipboard"                                            # xcopy:        Copy to clipboard
