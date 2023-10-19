@@ -24,5 +24,4 @@ wal -q -i "$1"
 betterlockscreen -u "$wallpaper"
 
 # Setting the background for Rofi
-rm "$HOME/.config/rofi/rofi-bg.jpg"
-ln -s "$wallpaper" "$HOME/.config/rofi/rofi-bg.jpg"
+ln -fs "$wallpaper" "$HOME/.config/rofi/rofi-bg.jpg"
