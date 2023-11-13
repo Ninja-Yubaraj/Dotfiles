@@ -17,6 +17,7 @@ export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"      # i
 #export EDITOR=""                                                            # use anything you want
 #export VISUAL=""                                                            # use anything you want
 #export ALTERNATE_EDITOR=""                                                  # if you want to use an alternate editor
+#export OPENAI_API_KEY=""                                                    # OpenAI API Secret Key
 
 ### SET MANPAGER
 ### Uncomment only one of these!

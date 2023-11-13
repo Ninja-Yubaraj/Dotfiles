@@ -17,6 +17,7 @@ export HISTCONTROL=ignoredups:erasedups      # no duplicate entries
 #export EDITOR=""                            # use anything you want
 #export VISUAL=""                            # use anything you want
 #export ALTERNATE_EDITOR=""                  # if you want to use an alternate editor
+#export OPENAI_API_KEY=""                    # OpenAI API Secret Key
 
 ### SET MANPAGER
 ### Uncomment only one of these!
